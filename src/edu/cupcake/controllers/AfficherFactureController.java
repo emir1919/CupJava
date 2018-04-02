@@ -190,6 +190,7 @@ public class AfficherFactureController implements Initializable {
         
             
             ((Stage) FacturePane.getScene().getWindow()).close();
+            //s
     }
 
 
