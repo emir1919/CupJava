@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.CupTest2.gui.StatistiquesController">
+   <children>
+      <AnchorPane prefHeight="800.0" prefWidth="200.0" style="-fx-background-color: #212221;">
+         <children>
+            <Text fill="#fcfcfc" layoutX="55.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cupcake">
+               <font>
+                  <Font name="Comic Sans MS" size="24.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="42.0" fitWidth="48.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/info-g.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="42.0" fitWidth="42.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/detalhes-h.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="27.0" layoutX="10.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/map.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="22.0" layoutX="10.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/stat.PNG" />
+               </image>
+            </ImageView>
+            <Button fx:id="InfoBrandButton" layoutX="42.0" layoutY="82.0" mnemonicParsing="false" onAction="#ShowBrand" style="-fx-background-color: #212221;" text="Mes informations" textFill="#fcfcfc">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="BakeryButton" layoutX="42.0" layoutY="142.0" mnemonicParsing="false" onAction="#ShowBakery" style="-fx-background-color: #212221;" text="Mes patisseries" textFill="#fcfcfc">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="map" layoutX="41.0" layoutY="201.0" mnemonicParsing="false" onAction="#localisation" style="-fx-background-color: #212221;" text="Localisation" textFill="#fcfcfc">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="stat" layoutX="42.0" layoutY="255.0" mnemonicParsing="false" onAction="#statistiques" style="-fx-background-color: #212221;" text="Statistiques" textFill="#fcfcfc">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <JFXButton fx:id="pdf" layoutX="74.0" layoutY="316.0" onAction="#pdf" text="pdf" textFill="#d73939">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="42.0" fitWidth="51.0" layoutX="11.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../PIDEVSKIZ/src/Images/images81.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Pane fx:id="pane" layoutX="222.0" layoutY="29.0" prefHeight="168.0" prefWidth="293.0" />
+      <BarChart fx:id="barchart" layoutX="216.0" layoutY="300.0" prefHeight="196.0" prefWidth="500.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <BarChart fx:id="barchart2" layoutX="238.0" layoutY="502.0" prefHeight="261.0" prefWidth="472.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <JFXButton fx:id="afficher" layoutX="489.0" layoutY="751.0" onAction="#afficher" text="Afficher" textFill="#d71717">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <ImageView fitHeight="42.0" fitWidth="51.0" layoutX="575.0" layoutY="750.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../PIDEVSKIZ/src/Images/images81.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

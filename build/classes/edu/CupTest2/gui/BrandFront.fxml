@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import org.controlsfx.control.Rating?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.CupTest2.gui.BrandFrontController">
+   <children>
+      <JFXButton fx:id="brandbutton" layoutX="40.0" layoutY="50.0" onAction="#getAll" text="Enseignes" />
+      <JFXListView fx:id="list" layoutX="164.0" layoutY="34.0" prefHeight="147.0" prefWidth="292.0" />
+      <Rating fx:id="rate" layoutX="212.0" layoutY="322.0" />
+   </children>
+</AnchorPane>
