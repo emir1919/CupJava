@@ -32,6 +32,8 @@ public class HomeController implements Initializable {
     private JFXButton profilebutton;
     @FXML
     private AnchorPane content;
+    @FXML
+    private JFXButton deconnectbutton;
     
     /**
      * Initializes the controller class.
@@ -46,6 +48,9 @@ public class HomeController implements Initializable {
         else 
         {
         menupane.getChildren().remove(profilebutton);
+        menupane.getChildren().remove(deconnectbutton);
+
+        
         }
     }
 
@@ -76,5 +81,14 @@ public class HomeController implements Initializable {
         
 
     } 
+
+    @FXML
+    private void Deconnexion(ActionEvent event) throws IOException {
+        cupcake.Cupcake.user=null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/Home.fxml"));
+        AnchorPane root = (AnchorPane) loader.load();
+       
+        menupane.getScene().setRoot(root);
+    }
     
 }
