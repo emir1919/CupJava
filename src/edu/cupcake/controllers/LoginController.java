@@ -27,6 +27,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javax.management.Notification;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -79,6 +81,7 @@ public class LoginController implements Initializable {
             System.out.println(u);
             if (u != null && u.getEnabled()==1) {
                 Cupcake.user = u;
+                
                 System.out.println("sooooo nice");
                 txtetat.setText("");
 

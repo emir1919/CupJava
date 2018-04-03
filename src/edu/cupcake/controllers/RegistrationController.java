@@ -52,7 +52,7 @@ import javafx.stage.StageStyle;
  */
 public class RegistrationController implements Initializable {
 
-    ObservableList<String> RoleList = FXCollections.observableArrayList("ROLE_USER", "ROLE_ADMIN");
+    ObservableList<String> RoleList = FXCollections.observableArrayList("ROLE_USER", "ROLE_ADMIN","ROLE_DELIVERYMAN","ROLE_BAKERY","ROLE_BRAND");
 
     @FXML
     private TextField txtNom;
@@ -98,6 +98,7 @@ public class RegistrationController implements Initializable {
         Rolecombo.setItems(RoleList);
         cupcake.Cupcake.lastroute = cupcake.Cupcake.currentroute;
         cupcake.Cupcake.currentroute = Routing.REGISTER;
+       
     }
 
     @FXML
