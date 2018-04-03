@@ -7,8 +7,10 @@ package edu.CupTest2.tests;
 
 import edu.CupTest2.entities.Enseigne;
 import edu.CupTest2.entities.Bakery;
+import edu.CupTest2.entities.Comment;
 import edu.CupTest2.entities.Rating;
 import edu.CupTest2.entities.Users;
+import edu.CupTest2.services.CommentServices;
 import edu.CupTest2.services.EnseigneServices;
 import edu.CupTest2.services.PatisserieServices;
 import edu.CupTest2.services.RatingServices;
@@ -67,9 +69,18 @@ public class main {
         r.setUser_id(1);
         r.setEnseigne_id(100);
         r.setNote((float) 4.36);
-        rs.ajouterRating(r); 
-        System.out.println(r.toString());
-
-
+        //rs.ajouterRating(r); 
+        //System.out.println(r.toString());
+        Comment c=new Comment();
+        //c.setId(1);
+        c.setContent("salut");
+        c.setDateComment("11/04/2017");
+        c.setEnseigne_id(1);
+        c.setUser_id(1);
+        CommentServices cs=new CommentServices();
+        //cs.AjouterCommentaire(c);
+        //cs.ModifierCommentaire(c);
+        //System.out.println(cs.GetAllCommentByEnseigne(1).toString());
+        System.out.println(cs.GetCommentByEnseigne(1).toString());
     }
 }

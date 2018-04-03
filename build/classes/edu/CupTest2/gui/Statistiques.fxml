@@ -90,15 +90,5 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
-      <JFXButton fx:id="afficher" layoutX="489.0" layoutY="751.0" onAction="#afficher" text="Afficher" textFill="#d71717">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </JFXButton>
-      <ImageView fitHeight="42.0" fitWidth="51.0" layoutX="575.0" layoutY="750.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../PIDEVSKIZ/src/Images/images81.jpg" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

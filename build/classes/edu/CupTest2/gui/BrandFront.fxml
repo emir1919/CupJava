@@ -2,13 +2,25 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import org.controlsfx.control.Rating?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.CupTest2.gui.BrandFrontController">
    <children>
       <JFXButton fx:id="brandbutton" layoutX="40.0" layoutY="50.0" onAction="#getAll" text="Enseignes" />
-      <JFXListView fx:id="list" layoutX="164.0" layoutY="34.0" prefHeight="147.0" prefWidth="292.0" />
-      <Rating fx:id="rate" layoutX="212.0" layoutY="322.0" />
+      <JFXListView fx:id="list" layoutX="118.0" layoutY="36.0" prefHeight="79.0" prefWidth="245.0" />
+      <Rating fx:id="rate" layoutX="384.0" layoutY="59.0" />
+      <JFXListView fx:id="list_commentaire" layoutX="128.0" layoutY="132.0" onMouseClicked="#test" prefHeight="188.0" prefWidth="226.0" />
+      <TextArea fx:id="contenu_commentaire" layoutX="128.0" layoutY="325.0" prefHeight="61.0" prefWidth="176.0" />
+      <Button fx:id="commenter" layoutX="328.0" layoutY="343.0" mnemonicParsing="false" onAction="#commenter" prefHeight="34.0" prefWidth="149.0" style="-fx-background-color: #8AB7D4;" text="Commenter" textFill="#fffdfd" />
+      <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="440.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/dialog.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
