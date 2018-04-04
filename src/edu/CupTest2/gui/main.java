@@ -5,6 +5,8 @@
  */
 package edu.CupTest2.gui;
 
+import edu.CupTest2.entities.Users;
+import edu.CupTest2.utils.Routing;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,11 +25,13 @@ import javafx.stage.Stage;
  * @author Emir
  */
 public class main extends Application {
-    
+     public static Users user = null;
+    public static String currentroute = Routing.LOGIN;
+    public static String lastroute = null;
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root=FXMLLoader.load(getClass().getResource("BrandFront.fxml"));
+            Parent root=FXMLLoader.load(getClass().getResource(Routing.HOME));
             Scene scene=new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
