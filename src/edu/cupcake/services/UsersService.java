@@ -56,16 +56,16 @@ public class UsersService {
         pre.executeUpdate();
     }
 
-    public Users getUserById(long id) throws SQLException {
+    public Users getUserById(int id) throws SQLException {
         Users u = null;
         String req = "SELECT * FROM `users` WHERE id = ?";
         PreparedStatement pre = con.prepareStatement(req);
-        pre.setLong(1, id);
+        pre.setInt(1, id);
         ResultSet rs = pre.executeQuery();
         while (rs.next()) {
             u = new Users();
 
-            u.setId(rs.getLong("id"));
+            u.setId(rs.getInt("id"));
             u.setUsername(rs.getString("username"));
             u.setEmail(rs.getString("email"));
             u.setRoles(rs.getString("roles"));
@@ -91,17 +91,20 @@ public class UsersService {
         ResultSet rs = pre.executeQuery();
         while (rs.next()) {
             u = new Users();
-            u = UsersService.this.getUserById(rs.getLong("id"));
+            u = UsersService.this.getUserById(rs.getInt("id"));
             if (BCrypt.checkpw(u.getPassword(), BCrypt.hashpw(password, BCrypt.gensalt())) == true) {
                 return u;
 
             }
+            
+           
+            
 
         }
         return u;
     }
     
-    public void modifierClient(Users client, long id) throws SQLException {
+    public void modifierClient(Users client, int id) throws SQLException {
         String req = "UPDATE users SET username=?,email = ? ,password = ? ,phonenumber=?, firstname=?, lastname=?, birthday=? WHERE id = ?";
         PreparedStatement ste = con.prepareStatement(req);
         ste.setString(1,client.getUsername());
@@ -112,7 +115,7 @@ public class UsersService {
         ste.setString(6, client.getLastname());
         ste.setDate(7,client.getBirthday());
         
-        ste.setLong(8, id);
+        ste.setInt(8, id);
         ste.executeUpdate();
         Alert alertSucc = new Alert(Alert.AlertType.CONFIRMATION);
         alertSucc.setTitle("Succés");

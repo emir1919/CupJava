@@ -55,7 +55,7 @@ public class AdressesService {
         pre.setString(6, adresse.getPrenom());
         pre.setString(7, adresse.getTelephone());
         pre.setString(8, adresse.getVille());
-        pre.setLong(9, adresse.getUtilisateur_id());
+        pre.setInt(9, adresse.getUtilisateur_id());
 
         pre.executeUpdate();
     }
@@ -84,14 +84,14 @@ public class AdressesService {
         }
         return Adresses;
     }*/
-    public List<Adresses> listeAdresses(long id) {
+    public List<Adresses> listeAdresses(int id) {
         List<Adresses> myList = new ArrayList<Adresses>();
         try {
 
             String requete2 = "SELECT * from adresses where utilisateur_id= ?";
 
             PreparedStatement st2 = con.prepareStatement(requete2);
-            st2.setLong(1, id);
+            st2.setInt(1, id);
             ResultSet rs = st2.executeQuery();
             while (rs.next()) {
                 Adresses a = new Adresses();
@@ -116,11 +116,11 @@ public class AdressesService {
         return myList;
     }
 
-    public Adresses getAdressebyId(long id) throws SQLException {
+    public Adresses getAdressebyId(int id) throws SQLException {
         Adresses a = null;
         String req = "SELECT * FROM `adresses` WHERE id = ?";
         PreparedStatement pre = con.prepareStatement(req);
-        pre.setLong(1, id);
+        pre.setInt(1, id);
         ResultSet rs = pre.executeQuery();
         while (rs.next()) {
             a = new Adresses();
@@ -165,11 +165,11 @@ public class AdressesService {
         pre.executeUpdate();
     }
 
-    public Adresses getAdressebyOrder(long id) throws SQLException {
+    public Adresses getAdressebyOrder(int id) throws SQLException {
         Adresses a = null;
-        String req = "SELECT DISTINCT adresses.* FROM `adresses` inner join orders ON adresses.id = orders.adresse_id WHERE orders.adresse_id = ?";
+        String req = "SELECT DISTINCT adresses.* FROM `adresses` inner join orders ON adresses.id = orders.adresse_id WHERE orders.id = ?";
         PreparedStatement pre = con.prepareStatement(req);
-        pre.setLong(1, id);
+        pre.setInt(1, id);
         ResultSet rs = pre.executeQuery();
         while (rs.next()) {
             a = new Adresses();

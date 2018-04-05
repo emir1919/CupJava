@@ -67,4 +67,24 @@ public class Line_OrderService {
         return myList;
     }
     
+    public void addLineORder(Line_Order line) throws SQLException {
+        String req = "INSERT INTO line_order (qte,commande_id,product_id,affected) values(?,?,?,?)";
+       
+        PreparedStatement pre = con.prepareStatement(req);
+
+        pre.setInt(1, line.getQte());
+        pre.setInt(2, line.getCommande_id());
+        pre.setInt(3, line.getProduct_id());
+        pre.setString(4, line.getAffected());
+
+     
+     
+        pre.executeUpdate();
+        
+        
+    
+     }  
+    
+    
+    
 }

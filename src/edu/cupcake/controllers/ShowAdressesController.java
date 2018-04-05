@@ -40,6 +40,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTML;
+import org.eclipse.persistence.internal.jpa.parsing.SetNode;
 
 /**
  * FXML Controller class
@@ -65,7 +66,7 @@ public class ShowAdressesController implements Initializable {
     private TextField txtVille;
     @FXML
     private TextField txtComplement;
-    
+
     @FXML
     private TableColumn<Adresses, String> Nom;
     @FXML
@@ -84,8 +85,8 @@ public class ShowAdressesController implements Initializable {
     private TableColumn<Adresses, String> Complement;
     @FXML
     private TableView<Adresses> tableView;
-        List<Adresses> listAdresses;
-            ObservableList<Adresses> listViewAdresses;
+    List<Adresses> listAdresses;
+    ObservableList<Adresses> listViewAdresses;
 
     public TableView<Adresses> getTableView() {
         return tableView;
@@ -94,9 +95,8 @@ public class ShowAdressesController implements Initializable {
     public void setTableView(TableView<Adresses> tableView) {
         this.tableView = tableView;
     }
-            
-            
-            public static Adresses selectedadresse;
+
+    public static Adresses selectedadresse;
 
     public Adresses getSelectedadresse() {
         return selectedadresse;
@@ -106,8 +106,6 @@ public class ShowAdressesController implements Initializable {
         this.selectedadresse = selectedadresse;
     }
 
-    
-    
     //Edit Adresse        
     @FXML
     private VBox VBoxInfoPersonel;
@@ -128,9 +126,6 @@ public class ShowAdressesController implements Initializable {
     @FXML
     private JFXTextField txtEditComplement;
 
-
-    
-    
     /**
      * Initializes the controller class.
      */
@@ -142,10 +137,9 @@ public class ShowAdressesController implements Initializable {
         } catch (Exception e) {
         }
 
-        
     }
 
-     private void initCol() {
+    private void initCol() {
         Nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         Prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         Tel.setCellValueFactory(new PropertyValueFactory<>("telephone"));
@@ -155,12 +149,10 @@ public class ShowAdressesController implements Initializable {
         Adresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
         Complement.setCellValueFactory(new PropertyValueFactory<>("complement"));
 
-
-
     }
-    
+
     private void loadData() {
-        
+
         /*  try{
         AdressesService adresse = new AdressesService();
         ObservableList<Document> data = FXCollections.observableArrayList(adresse.listeAdresses(1));
@@ -180,113 +172,104 @@ public class ShowAdressesController implements Initializable {
             initCol();
         } catch (Exception e) {
         }
-        
+
     }
 
-     
     public void addAdresse(ActionEvent event) throws IOException {
 
-     FXMLLoader lo = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/AjouterAdresse.fxml"));
-                            Parent root = lo.load();
-                            Parent loader = FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/AjouterAdresse.fxml"));  
-                            Stage stage = new Stage(StageStyle.DECORATED);
-                            stage.setTitle("Ajout adresse");    
+        FXMLLoader lo = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/AjouterAdresse.fxml"));
+        Parent root = lo.load();
+        Parent loader = FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/AjouterAdresse.fxml"));
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setTitle("Ajout adresse");
 
-                           
-                          stage.setResizable(false);
-                            stage.setScene(new Scene(root));
-                            stage.show();
-        
-        
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
+        ((Stage) tableView.getScene().getWindow()).close();
 
-    } 
-    
+    }
+
     @FXML
-    public void ajouteradresse(ActionEvent event)  throws SQLException, IOException {
+    public void ajouteradresse(ActionEvent event) throws SQLException, IOException {
 
-            AdressesService aservice = new AdressesService();
-            Adresses adresse = new Adresses(cupcake.Cupcake.user.getId(), txtNom.getText(), txtPrenom.getText(), txtTel.getText(), txtAdresse.getText(), txtCp.getText(), txtPays.getText(), txtVille.getText(), txtComplement.getText());
-            aservice.ajouterAdresse(adresse);
-            System.out.println(adresse.toString());
-            
-            ((Stage) txtNom.getScene().getWindow()).close();
-            
-            
+        AdressesService aservice = new AdressesService();
+        Adresses adresse = new Adresses(cupcake.Cupcake.user.getId(), txtNom.getText(), txtPrenom.getText(), txtTel.getText(), txtAdresse.getText(), txtCp.getText(), txtPays.getText(), txtVille.getText(), txtComplement.getText());
+        aservice.ajouterAdresse(adresse);
+        System.out.println(adresse.toString());
 
-    } 
-    
-    public void refreshtable()
-    {
+        HomeController.afficherprofile = 1;
+        ProfileController.afficheradresses = 1;
+
+        Parent root = FXMLLoader.load(getClass().getResource(Routing.HOME));
+        Stage stage = new Stage(StageStyle.DECORATED);
+
+        stage.setMaximized(true);
+        stage.setScene(new Scene(root));
+        stage.show();
+
+        ((Stage) txtNom.getScene().getWindow()).close();
+
+    }
+
+    public void refreshtable() {
         this.listViewAdresses.clear();
         loadData();
-       
 
     }
-    
-    
+
     @FXML
     private void editAdresse(ActionEvent event) throws IOException, SQLException {
-        
-        
-        
-        
-        
- 
-      
-        setSelectedadresse(tableView.getSelectionModel().getSelectedItem());
-        System.out.println("Show:"+getSelectedadresse());
-        FXMLLoader lo = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/EditAdresse.fxml"));
-                            Parent root = lo.load();
-                             EditAdresseController pc=lo.getController();
-                             pc.setSelected(getSelectedadresse());
-                             AdressesService adr= new AdressesService();
-                             
-        Adresses adresses = adr.getAdressebyId(getSelectedadresse().getId());
-        
-    
-                            // pc.txtEditNom.setText(""+pc.getSelected().getId());
-                            Stage stage = new Stage(StageStyle.DECORATED);
-                            stage.setTitle("Modification adresse");    
 
-                           
-                          stage.setResizable(false);
-                            stage.setScene(new Scene(root));
-                            stage.show();
-        
-        
-        
-      
-        
-        
+        setSelectedadresse(tableView.getSelectionModel().getSelectedItem());
+        System.out.println("Show:" + getSelectedadresse());
+        FXMLLoader lo = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/EditAdresse.fxml"));
+        Parent root = lo.load();
+        EditAdresseController pc = lo.getController();
+        pc.setSelected(getSelectedadresse());
+        AdressesService adr = new AdressesService();
+
+        Adresses adresses = adr.getAdressebyId(getSelectedadresse().getId());
+
+        // pc.txtEditNom.setText(""+pc.getSelected().getId());
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setTitle("Modification adresse");
+
+        ((Stage) tableView.getScene().getWindow()).close();
+
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
+
     }
-    
-    
+
     @FXML
     private void supprimerAdresse(ActionEvent event) throws IOException, SQLException {
-        
-        
-        
-        
-        
-         
-      
-        setSelectedadresse(tableView.getSelectionModel().getSelectedItem());
-       Alert alert = new Alert(AlertType.CONFIRMATION);
-alert.setTitle("Supprimer une adresse");
-alert.setHeaderText("Vous voulez supprimer une adresse.");
-alert.setContentText("Etes vous sur ?");
 
-Optional<ButtonType> result = alert.showAndWait();
-if (result.get() == ButtonType.OK){
-    AdressesService sr = new AdressesService();
-    sr.supprimerAdresse(getSelectedadresse().getId());
-} else {
-    alert.close();
-}
+        setSelectedadresse(tableView.getSelectionModel().getSelectedItem());
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Supprimer une adresse");
+        alert.setHeaderText("Vous voulez supprimer une adresse.");
+        alert.setContentText("Etes vous sur ?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            AdressesService sr = new AdressesService();
+            sr.supprimerAdresse(getSelectedadresse().getId());
+            HomeController.afficherprofile = 1;
+        ProfileController.afficheradresses = 1;
+
+        Parent root = FXMLLoader.load(getClass().getResource(Routing.HOME));
+        Stage stage = new Stage(StageStyle.DECORATED);
+
+        stage.setMaximized(true);
+        stage.setScene(new Scene(root));
+        stage.show();
+        ((Stage) tableView.getScene().getWindow()).close();
+        } else {
+            alert.close();
+        }
         
-        
-      
-        
-        
+
     }
 }

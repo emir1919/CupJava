@@ -37,18 +37,18 @@ public class Orders implements Serializable {
 
     
     
-    public  String getAdresseByOrder(int id) throws SQLException
+    public final  String getAdresseByOrder(int id) throws SQLException
       {
           AdressesService sr = new AdressesService();
           Adresses adresse = new Adresses();
-          adresse=sr.getAdressebyOrder(id);
+          adresse=sr.getAdressebyId(id);
           String adressestring = adresse.getNom()+" "+adresse.getPrenom()+", "+adresse.getAdresse()+", "+adresse.getVille();
           
           return adressestring;
           
       }
 
-    public Orders() {
+    public Orders(){
         
     }
 
@@ -61,7 +61,6 @@ public class Orders implements Serializable {
     }
 
     public Orders(Date Date, String reference, int adresse_id, int utilisateur_id, float amount, String PaymentState) throws SQLException {
-        this.adresse=getAdresseByOrder(this.id);
         this.Date = Date;
         this.reference = reference;
         this.adresse_id = adresse_id;
@@ -150,7 +149,9 @@ public class Orders implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.cupcake.entities.Orders[ id=" + id + " ]";
+        return "Orders{" +  ", Date=" + Date + ", reference=" + reference + ", adresse_id=" + adresse_id + ", utilisateur_id=" + utilisateur_id + ", amount=" + amount + ", PaymentState=" + PaymentState + ", adresse=" + adresse + '}';
     }
+
+    
     
 }

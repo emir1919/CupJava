@@ -5,8 +5,22 @@
  */
 package edu.cupcake.utils;
 
-import java.io.UnsupportedEncodingException;
+// Copyright (c) 2006 Damien Miller <djm@mindrot.org>
+//
+// Permission to use, copy, modify, and distribute this software for any
+// purpose with or without fee is hereby granted, provided that the above
+// copyright notice and this permission notice appear in all copies.
+//
+// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+// WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+// MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+// ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+// WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+// ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+// OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
+
+import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
 
 /**
@@ -50,7 +64,7 @@ import java.security.SecureRandom;
  * 10, and the valid range is 4 to 30.
  *
  * @author Damien Miller
- * @version 0.4
+ * @version 0.2
  */
 public class BCrypt {
 	// BCrypt parameters
@@ -653,7 +667,7 @@ public class BCrypt {
 			off = 3;
 		else {
 			minor = salt.charAt(2);
-			if (minor != 'a' || salt.charAt(3) != '$')
+			if (minor != 'y' || salt.charAt(3) != '$')
 				throw new IllegalArgumentException ("Invalid salt revision");
 			off = 4;
 		}
@@ -665,7 +679,7 @@ public class BCrypt {
 
 		real_salt = salt.substring(off + 3, off + 25);
 		try {
-			passwordb = (password + (minor >= 'a' ? "\000" : "")).getBytes("UTF-8");
+			passwordb = (password + (minor >= 'y' ? "\000" : "")).getBytes("UTF-8");
 		} catch (UnsupportedEncodingException uee) {
 			throw new AssertionError("UTF-8 is not supported");
 		}
@@ -677,7 +691,7 @@ public class BCrypt {
 		    (int[])bf_crypt_ciphertext.clone());
 
 		rs.append("$2");
-		if (minor >= 'a')
+		if (minor >= 'y')
 			rs.append(minor);
 		rs.append("$");
 		if (rounds < 10)
@@ -708,7 +722,7 @@ public class BCrypt {
 
 		random.nextBytes(rnd);
 
-		rs.append("$2a$");
+		rs.append("$2y$");
 		if (log_rounds < 10)
 			rs.append("0");
 		if (log_rounds > 30) {

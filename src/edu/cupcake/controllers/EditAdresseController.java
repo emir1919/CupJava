@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXTextField;
 import cupcake.Cupcake;
 import edu.cupcake.entities.Adresses;
 import edu.cupcake.services.AdressesService;
+import edu.cupcake.utils.Routing;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -93,6 +94,29 @@ public class EditAdresseController implements Initializable {
         
             ((Stage) txtEditAdresse.getScene().getWindow()).close();
             
+            HomeController.afficherprofile=1;
+            ProfileController.afficheradresses=1;
+                    
+                            Parent root = FXMLLoader.load(getClass().getResource(Routing.HOME));
+                            Stage stage = new Stage(StageStyle.DECORATED);
+
+                           stage.setMaximized(true);
+                            stage.setScene(new Scene(root));
+                            stage.show();
+                    
+            
+          /*  
+              FXMLLoader lo = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/ShowAdresses.fxml"));
+                            Parent root = lo.load();
+                         
+    
+                            // pc.txtEditNom.setText(""+pc.getSelected().getId());
+                            Stage stage = new Stage(StageStyle.DECORATED);
+
+                            stage.setScene(new Scene(root));
+                            stage.show();*/
+          
+   
     }
     
 

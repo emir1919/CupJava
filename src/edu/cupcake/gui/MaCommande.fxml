@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="852.0" prefWidth="1134.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9" fx:controller="edu.cupcake.controllers.MaCommandeController">
+   <children>
+      <Text fill="#f39c12" layoutX="460.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ma Commande" wrappingWidth="213.7294921875">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Text>
+      <Pane layoutX="242.0" layoutY="64.0" prefHeight="58.0" prefWidth="650.0">
+         <children>
+            <JFXButton layoutX="21.0" layoutY="11.0" prefHeight="36.0" prefWidth="153.0" style="-fx-background-color: #F39C12;" text="Validation Panier" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="241.0" layoutY="11.0" prefHeight="36.0" prefWidth="153.0" style="-fx-background-color: #F39C12;" text="Livraison" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="476.0" layoutY="11.0" prefHeight="36.0" prefWidth="153.0" style="-fx-background-color: #F39C12;" text="Paiement" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+            <Separator layoutX="197.0" layoutY="13.0" orientation="VERTICAL" prefHeight="36.0" prefWidth="20.0" />
+            <Separator layoutX="426.0" layoutY="13.0" orientation="VERTICAL" prefHeight="36.0" prefWidth="20.0" />
+            <ImageView fx:id="imgValidationPanier" fitHeight="25.0" fitWidth="32.0" layoutX="-12.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ressources/images/font-awesome_4-7-0_angle-right_256_0_e67e22_none.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgLivraison" fitHeight="25.0" fitWidth="32.0" layoutX="206.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ressources/images/font-awesome_4-7-0_angle-right_256_0_e67e22_none.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgPaiement" fitHeight="25.0" fitWidth="32.0" layoutX="441.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ressources/images/font-awesome_4-7-0_angle-right_256_0_e67e22_none.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Separator layoutX="198.0" layoutY="155.0" prefHeight="1.0" prefWidth="721.0" />
+      <AnchorPane fx:id="CommandeContent" layoutX="-1.0" layoutY="156.0" prefHeight="695.0" prefWidth="1134.0" />
+   </children>
+</AnchorPane>

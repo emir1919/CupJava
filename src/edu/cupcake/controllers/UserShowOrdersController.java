@@ -36,12 +36,16 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.jfoenix.controls.JFXButton;
+import edu.cupcake.utils.Routing;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.StageStyle;
 
 
@@ -69,6 +73,10 @@ public class UserShowOrdersController implements Initializable {
             ObservableList<Orders> listViewOrders;
             
          public static Orders selectedorder;
+    @FXML
+    private JFXButton btnPayer;
+    
+
 
     public Orders getSelectedorder() {
         return selectedorder;
@@ -86,21 +94,35 @@ public class UserShowOrdersController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        btnPayer.setVisible(false);
         try {
             initCol();
         } catch (SQLException ex) {
             Logger.getLogger(UserShowOrdersController.class.getName()).log(Level.SEVERE, null, ex);
         }
         loadData();
-        
-        
+         
+       
             /*PrinterJob job = PrinterJob.createPrinterJob();
             if(job != null){
             job.showPrintDialog(tableView.getScene().getWindow()); // Window must be your main Stage
             // job.printPage(yourNode);
             job.endJob();
             }*/
-         
+           /*  if (tableView.getSelectionModel().getSelectedItem().getPaymentState().equals("paid")) {
+             System.err.println(tableView.getSelectionModel().getSelectedItem().getPaymentState());
+         }*/
+           tableView.setOnMouseClicked((event) -> {
+               if (tableView.getSelectionModel().getSelectedItem().getPaymentState().equals("Non Payée"))
+              {
+                  btnPayer.setVisible(true);
+              }
+               else
+               {
+              btnPayer.setVisible(false);
+
+               }
+            });
     }    
     
      private void initCol() throws SQLException {
@@ -112,7 +134,7 @@ public class UserShowOrdersController implements Initializable {
         Adresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
         
          
-     
+        
 
 
     }
@@ -139,12 +161,17 @@ public class UserShowOrdersController implements Initializable {
             OrdersService sr = new OrdersService();
             listeorders = new ArrayList<>();
             listeorders = sr.getOrdersbyUserId(cupcake.Cupcake.user.getId());
-            System.err.println(listeorders);
             listViewOrders = FXCollections.observableArrayList(listeorders);
+     
             tableView.setItems(listViewOrders);
+             for (Orders listeorder : listeorders) {
+              System.err.println(listeorder.getId());
+          }
             initCol();
         } catch (Exception e) {
         }
+        
+         
         
     }
 
@@ -174,6 +201,20 @@ public class UserShowOrdersController implements Initializable {
         
         
     }
+
+    @FXML
+    private void PayerOrder(ActionEvent event) throws IOException {
+                ValidationLivraisonCommandeController.currentorder=tableView.getSelectionModel().getSelectedItem();
+ 
+        MaCommandeController.paiement=1;
+        HomeController.macommande=1;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/Home.fxml"));
+        AnchorPane root = (AnchorPane) loader.load();
+       
+        tableView.getScene().setRoot(root);
+    }
+
+   
 
       
  

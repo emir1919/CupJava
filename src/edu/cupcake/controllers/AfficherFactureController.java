@@ -5,9 +5,17 @@
  */
 package edu.cupcake.controllers;
 
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
+import com.itextpdf.text.ListItem;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import edu.cupcake.entities.Line_Order;
 import edu.cupcake.entities.Orders;
@@ -17,6 +25,7 @@ import edu.cupcake.services.Line_OrderService;
 import edu.cupcake.services.ProductService;
 import edu.cupcake.services.UsersService;
 import java.awt.Desktop;
+import java.awt.Font;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -163,11 +172,11 @@ public class AfficherFactureController implements Initializable {
     
     
     
-    String chemin = "/home/berrahal/NetBeansProjects/" + "stat.pdf";
+    String chemin = "/home/berrahal/NetBeansProjects/" + "facture.pdf";
 
     @FXML
     private void pdf(ActionEvent event) throws IOException, DocumentException {
-        Document d = new Document();
+       Document d = new Document(PageSize.A1.rotate(), 50, 50, 50, 50);
         SnapshotParameters s = new SnapshotParameters();
         
         WritableImage i = new WritableImage((int) FacturePane.getWidth(), (int) FacturePane.getHeight());
@@ -175,7 +184,7 @@ public class AfficherFactureController implements Initializable {
        
         String url = "snapshot" + new Date().getTime() + ".png";
          WritableImage writableImage = 
-            new WritableImage((int)FacturePane.getWidth(), (int)FacturePane.getHeight()+150);
+            new WritableImage((int)FacturePane.getWidth(), (int)FacturePane.getHeight());
         FacturePane.getScene().snapshot(writableImage);
         System.out.println(writableImage.getWidth()+" | "+writableImage.getHeight());
         File output = new File(url);
@@ -185,11 +194,19 @@ public class AfficherFactureController implements Initializable {
 
         d.open();
         Image is = Image.getInstance(url);
+        is.setWidthPercentage(50);
+
         d.add(is);
         d.close();
-        
+        try {
+        new ProcessBuilder("xreader", "/home/berrahal/NetBeansProjects/" + "facture.pdf").start();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
             
             ((Stage) FacturePane.getScene().getWindow()).close();
+       
+      
            
     }
 

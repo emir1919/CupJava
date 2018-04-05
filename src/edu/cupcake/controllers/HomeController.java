@@ -7,6 +7,7 @@ package edu.cupcake.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import edu.cupcake.entities.Panier;
+import edu.cupcake.utils.Routing;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
@@ -47,26 +48,67 @@ public class HomeController implements Initializable {
     @FXML
     private Text txtPrixTotal;
     
+        public static int afficherprofile=0;
+        public static int afficheradresses=0;
+        public static int affichercommandes=0;
+        public static int afficherpanier=0;
+        public static int macommande=0;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (cupcake.Cupcake.user!=null) {
-            menupane.getChildren().remove(connexiobutton);
-            
-            
-        }
-        else 
-        {
-        menupane.getChildren().remove(profilebutton);
-        menupane.getChildren().remove(deconnectbutton);
-
-        
-        }
-        
         try {
-            initialiserPanier();
+            if (cupcake.Cupcake.user!=null) {
+                menupane.getChildren().remove(connexiobutton);
+                
+                
+            }
+            else
+            {
+                menupane.getChildren().remove(profilebutton);
+                menupane.getChildren().remove(deconnectbutton);
+                
+                
+            }
+            
+            try {
+                initialiserPanier();
+            } catch (IOException ex) {
+                Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            AnchorPane panier = FXMLLoader.load(getClass().getResource(Routing.PANIER));
+            AnchorPane profile = FXMLLoader.load(getClass().getResource(Routing.Profile));
+            AnchorPane commande = FXMLLoader.load(getClass().getResource(Routing.MaCommande));
+
+
+             if(macommande!=0)
+            {
+                
+                content.getChildren().setAll(commande);
+                macommande=0;
+            }
+            if(afficherpanier!=0)
+            {
+                
+                content.getChildren().setAll(panier);
+                afficherpanier=0;
+            }
+            if(afficherprofile!=0)
+                    {
+                     content.getChildren().setAll(profile);
+                     afficherprofile=0;
+                    }
+           /* if(afficheradresses!=0)
+                    {
+                         AnchorPane pane=FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/Profile.fxml"));
+                //AnchorPane pane1=FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/EditProfile.fxml"));
+
+                     content.getChildren().setAll(pane,adresses);
+                     afficheradresses=0;
+                    }*/
         } catch (IOException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -90,6 +132,7 @@ public class HomeController implements Initializable {
         AnchorPane root = (AnchorPane) loader.load();
        
         menupane.getScene().setRoot(root);*/
+        ProfileController.afficherprofile=1;
         AnchorPane pane=FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/Profile.fxml"));
                 //AnchorPane pane1=FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/EditProfile.fxml"));
 
@@ -121,11 +164,12 @@ public class HomeController implements Initializable {
         {
                       Iterator<Panier> it = cupcake.Cupcake.Panier.iterator();
                       int nbproduit=0;
-                      double prixtotal=0;
+                     double prixtotal=0;
                       while (it.hasNext()) {
                 Panier next = it.next();
                 nbproduit++;
                 prixtotal=next.getProduit().getPrice()*next.getQte()+prixtotal;
+
                 
             }
                 txtNbProduits.setText(""+nbproduit+" produits");

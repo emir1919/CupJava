@@ -19,6 +19,7 @@ import edu.cupcake.entities.Users;
 import java.io.IOException;
 import javafx.scene.control.Alert.AlertType;
 import cupcake.Cupcake;
+import edu.cupcake.utils.BCrypt;
 import edu.cupcake.utils.Routing;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -79,7 +80,7 @@ public class LoginController implements Initializable {
 
             Users u = us.searchByPseudoPass(pseudo, password);
             System.out.println(u);
-            if (u != null && u.getEnabled()==1) {
+            if (u != null && u.getEnabled()==1 && BCrypt.checkpw(txtPassword.getText(), u.getPassword())) {
                 Cupcake.user = u;
                 
                 System.out.println("sooooo nice");

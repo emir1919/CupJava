@@ -22,7 +22,7 @@ public class Adresses implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private long utilisateur_id;
+    private int utilisateur_id;
     private String nom;
     private String prenom;
     private String telephone;
@@ -31,8 +31,9 @@ public class Adresses implements Serializable {
     private String pays;
     private String ville;
     private String complement;
+    
 
-    public long getUtilisateur_id() {
+    public int getUtilisateur_id() {
         return utilisateur_id;
     }
 
@@ -104,7 +105,7 @@ public class Adresses implements Serializable {
         this.complement = complement;
     }
 
-    public Adresses(long utilisateur_id, String nom, String prenom, String telephone, String adresse, String cp, String pays, String ville, String complement) {
+    public Adresses(int utilisateur_id, String nom, String prenom, String telephone, String adresse, String cp, String pays, String ville, String complement) {
         this.utilisateur_id = utilisateur_id;
         this.nom = nom;
         this.prenom = prenom;

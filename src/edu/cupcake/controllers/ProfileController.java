@@ -87,6 +87,11 @@ public class ProfileController implements Initializable {
     
      @FXML
     private AnchorPane profilecontent;
+     
+     public static int afficherprofile=0;
+     public static int afficheradresses=0;
+     public static int affichercommandes=0;
+     
     
     /**
      * Initializes the controller class.
@@ -96,8 +101,8 @@ public class ProfileController implements Initializable {
        
 
        
-
-        AnchorPane pane1;
+        if (afficherprofile!=0) {
+            AnchorPane pane1;
            try {
                pane1 = FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/EditProfile.fxml"));
                                profilecontent.getChildren().setAll(pane1);
@@ -105,6 +110,33 @@ public class ProfileController implements Initializable {
            } catch (IOException ex) {
                Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
            }
+           afficherprofile=0;
+        }
+        
+        if (afficheradresses!=0) {
+            AnchorPane pane1;
+           try {
+               pane1 = FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/ShowAdresses.fxml"));
+                               profilecontent.getChildren().setAll(pane1);
+
+           } catch (IOException ex) {
+               Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           afficheradresses=0;
+        }
+        
+        if (affichercommandes!=0) {
+            AnchorPane pane1;
+           try {
+               pane1 = FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/UserShowOrders.fxml"));
+                               profilecontent.getChildren().setAll(pane1);
+
+           } catch (IOException ex) {
+               Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           affichercommandes=0;
+        }
+        
 
 
 
