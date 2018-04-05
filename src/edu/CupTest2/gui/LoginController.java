@@ -26,6 +26,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -43,6 +44,12 @@ public class LoginController implements Initializable {
     private Label txtetat;
     @FXML
     private JFXButton connectbutton;
+    @FXML
+    private VBox VBoxInfoPersonel;
+    @FXML
+    private VBox VBoxMdp;
+    @FXML
+    private JFXButton back;
 
     /**
      * Initializes the controller class.
@@ -88,7 +95,7 @@ public class LoginController implements Initializable {
                 alert.setContentText("Vous êtes connecté en tant que :" + u.getUsername());
                
                 alert.showAndWait();
-                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/Home.fxml"));
+                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/CupTest2/gui/Home.fxml"));
         AnchorPane root = (AnchorPane) loader.load();
        
         txtPassword.getScene().setRoot(root);

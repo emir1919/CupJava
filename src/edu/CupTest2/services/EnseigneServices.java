@@ -106,6 +106,7 @@ public class EnseigneServices {
             p.setPhoneNumber(rs.getString(5));
             p.setWebSite(rs.getString(8));
             p.setLogo(rs.getString(9));
+            p.setDescription(rs.getString(11));
             listEnseigne.add(p);
         }
         return listEnseigne;

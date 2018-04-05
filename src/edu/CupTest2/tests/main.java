@@ -82,5 +82,7 @@ public class main {
         //cs.ModifierCommentaire(c);
         //System.out.println(cs.GetAllCommentByEnseigne(1).toString());
         System.out.println(cs.GetCommentByEnseigne(1).toString());
+                System.out.println(rs.CalculerMoyRatring(200));
+
     }
 }

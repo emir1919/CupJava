@@ -11,6 +11,7 @@ package edu.CupTest2.services;
  */
 
 
+import edu.CupTest2.entities.Enseigne;
 import edu.CupTest2.entities.Rating;
 import edu.CupTest2.utils.MyConnexion;
 import java.sql.Connection;
@@ -46,6 +47,48 @@ public class RatingServices {
         System.out.println("Rating ajouté");
         
         
+    }
+    public double CalculerMoyRatring(int id) throws SQLException
+    {
+        double c=0;
+        int a=0;
+      String req = "SELECT count(*) as nb FROM rating where enseigne_id=?";
+        PreparedStatement ste = con.prepareStatement(req);
+        ste.setInt(1, id);
+        ResultSet rs = ste.executeQuery(); 
+        while(rs.next()){
+         a=rs.getInt("nb");
+        }
+        
+        
+        double b=0;
+      String req2 = "SELECT sum(note) as total FROM rating where enseigne_id=?";
+        PreparedStatement ste2 = con.prepareStatement(req2);
+        ste2.setInt(1, id);
+        ResultSet rs2 = ste2.executeQuery(); 
+        while(rs2.next()){
+         b=rs2.getDouble("total");
+        }
+        if(a ==0)
+        {
+        c= 0;
+        }
+        else
+        {
+        c=b/a;}
+       return Math.round(c * 100.0) / 100.0;
+    }
+    public int NbRating(int id) throws SQLException
+    {
+         int a=0;
+      String req = "SELECT count(*) as nb FROM rating where enseigne_id=?";
+        PreparedStatement ste = con.prepareStatement(req);
+        ste.setInt(1, id);
+        ResultSet rs = ste.executeQuery(); 
+        while(rs.next()){
+         a=rs.getInt("nb");
+        }
+        return a;
     }
     
 }

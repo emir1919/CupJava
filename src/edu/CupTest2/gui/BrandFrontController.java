@@ -58,14 +58,8 @@ import javafx.util.Callback;
  */
 public class BrandFrontController implements Initializable {
 
-    @FXML
-    private JFXButton brandbutton;
-    @FXML
-    private JFXListView<String> list;
     private ObservableList<String> items = FXCollections.observableArrayList();
     private Rating rating;
-    @FXML
-    private org.controlsfx.control.Rating rate;
     @FXML
     private JFXListView<Comment> list_commentaire;
     @FXML
@@ -73,50 +67,22 @@ public class BrandFrontController implements Initializable {
     @FXML
     private Button commenter;
     Comment comment;
-
+    public static int id=0;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        list.setItems(items);
+        
 
-        Statement stmt = null;
-        ResultSet rs = null;
-        try {
-            Connection con = MyConnexion.getInstance().getConection();
-
-            stmt = con.createStatement();
-            rs = stmt.executeQuery("SELECT * FROM Enseigne where id=1");
-
-            while (rs.next()) {
-                items.add(rs.getString(3));
-                System.out.println(rs.getString(3));
-            }
-        } catch (SQLException e) {
-
-        }
-        rating = new Rating();
-
-        rate.setPartialRating(true);
-        rate.ratingProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable,
-                    Number oldValue, Number newValue) {
-                System.out.println(newValue.toString());
-            }
-
-        });
-
-        //yourratingtxt.setText(String.valueOf(rating.getRating()));
     }
 
     public void affiche(Comment s) throws SQLException {
 
         CommentServices sv = new CommentServices();
         System.out.println(s);
-        ObservableList<Comment> items = FXCollections.observableArrayList(sv.GetAllCommentByEnseigne(1));
+        ObservableList<Comment> items = FXCollections.observableArrayList(sv.GetAllCommentByEnseigne(id));
 
         list_commentaire.setCellFactory((ListView<Comment> arg0) -> {
             ListCell<Comment> cell = new ListCell<Comment>() {
@@ -171,7 +137,7 @@ public class BrandFrontController implements Initializable {
                                 try {
 
                                     CommentServices sv = new CommentServices();
-                                    Comment c = new Comment(list_commentaire.getSelectionModel().getSelectedItem().getId(), contenu_commentaire.getText(), "11", 1, 1);
+                                    Comment c = new Comment(list_commentaire.getSelectionModel().getSelectedItem().getId(), contenu_commentaire.getText(), "11", (int) (long)main.user.getId(), id);
 
                                     sv.ModifierCommentaire(c);
                                     AnchorPane pane = new AnchorPane();
@@ -196,9 +162,6 @@ public class BrandFrontController implements Initializable {
         list_commentaire.setItems(items);
     }
 
-    @FXML
-    private void getAll(ActionEvent event) {
-    }
 
     public Comment getComment() {
         return comment;
@@ -218,7 +181,7 @@ public class BrandFrontController implements Initializable {
 // Using DateFormat format method we can create a string 
 // representation of a date with the defined format.
         String reportDate = df.format(new Date().getTime());
-        Comment c = new Comment(contenu_commentaire.getText(), reportDate, 1, 1);
+        Comment c = new Comment(contenu_commentaire.getText(), reportDate, (int) (long)main.user.getId(), id);
 
         sv.AjouterCommentaire(c);
         AnchorPane pane = new AnchorPane();
