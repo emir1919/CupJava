@@ -92,7 +92,7 @@ public class LoginController implements Initializable {
                 alert.setContentText("Vous êtes connecté en tant que :" + u.getUsername());
                
                 alert.showAndWait();
-                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/Home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/Home.fxml"));
         AnchorPane root = (AnchorPane) loader.load();
        
         txtPassword.getScene().setRoot(root);

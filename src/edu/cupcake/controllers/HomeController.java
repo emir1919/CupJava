@@ -53,6 +53,8 @@ public class HomeController implements Initializable {
         public static int affichercommandes=0;
         public static int afficherpanier=0;
         public static int macommande=0;
+    @FXML
+    private JFXButton livreurbutton;
     
     /**
      * Initializes the controller class.
@@ -62,7 +64,10 @@ public class HomeController implements Initializable {
         try {
             if (cupcake.Cupcake.user!=null) {
                 menupane.getChildren().remove(connexiobutton);
-                
+               if (!cupcake.Cupcake.user.getRoles().contains("ROLE_DELIVERYMAN"))
+            {
+                menupane.getChildren().remove(livreurbutton);
+            }  
                 
             }
             else
@@ -70,8 +75,10 @@ public class HomeController implements Initializable {
                 menupane.getChildren().remove(profilebutton);
                 menupane.getChildren().remove(deconnectbutton);
                 
-                
+                menupane.getChildren().remove(livreurbutton);
+
             }
+           
             
             try {
                 initialiserPanier();
@@ -181,6 +188,14 @@ public class HomeController implements Initializable {
     @FXML
     private void AfficherPanier(MouseEvent event) throws IOException {
          AnchorPane pane=FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/Panier.fxml"));
+                //AnchorPane pane1=FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/EditProfile.fxml"));
+
+                content.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void livreurhome(ActionEvent event) throws IOException {
+        AnchorPane pane=FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/Livreur.fxml"));
                 //AnchorPane pane1=FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/EditProfile.fxml"));
 
                 content.getChildren().setAll(pane);
