@@ -61,23 +61,54 @@ public class PlanningService {
     return myList;
 }
      
-      public void addOrder(Planning planning) throws SQLException {
-        String req = "INSERT INTO planning (utilisateur_id,datestart,dateend,lineorder_id) values(?,?,?,?)";
+      public int addPlanningDisponible(Planning planning) throws SQLException {
+        String req = "INSERT INTO planning (utilisateur_id,datestart,dateend) values(?,?,?)";
        
                 String columnNames[] = new String[] { "id" };
         PreparedStatement pre = con.prepareStatement(req,columnNames);
         //   pre.setLong(1, user.getId());
 
-        pre.setInt(1, planning.getId());
+        pre.setInt(1, planning.getUtilisateur_id());
         pre.setString(2, planning.getDatestart().toString());
         pre.setString(3, planning.getDateend().toString());
-        pre.setInt(4, planning.getLine_order());
+        //pre.setInt(4, planning.getLine_order());
 
      
         
-        pre.executeUpdate() ;
+        int primkey=0;
+        
+         if (pre.executeUpdate() > 0) {
+            // Retrieves any auto-generated keys created as a result of executing this Statement object
+            java.sql.ResultSet generatedKeys = pre.getGeneratedKeys();
+            if ( generatedKeys.next() ) {
+                primkey = generatedKeys.getInt(1);
+            }
+        }
+         return primkey;
     
      }
+      
+      
+       public void EditPlanningUser(Planning planning, int id) throws SQLException {
+        String req = "UPDATE planning SET datestart = ? ,dateend = ? WHERE id = ?";
+        PreparedStatement ste = con.prepareStatement(req);
+        
+        ste.setString(1, planning.getDatestart().toString());
+        ste.setString(2, planning.getDateend().toString());
+     
+        
+        ste.setInt(3, id);
+        ste.executeUpdate();
+        
+    }
+       
+       
+         public void DeletePlanning(int id) throws SQLException {
+        String req = "DELETE FROM planning WHERE id =?";
+        PreparedStatement pre = con.prepareStatement(req);
+        pre.setInt(1, id);
+        pre.executeUpdate();
+    }
      
      
 }

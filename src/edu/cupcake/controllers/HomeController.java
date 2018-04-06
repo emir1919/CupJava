@@ -195,10 +195,14 @@ public class HomeController implements Initializable {
 
     @FXML
     private void livreurhome(ActionEvent event) throws IOException {
-        AnchorPane pane=FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/Livreur.fxml"));
+      /*  AnchorPane pane=FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/Livreur.fxml"));
                 //AnchorPane pane1=FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/EditProfile.fxml"));
 
-                content.getChildren().setAll(pane);
+                content.getChildren().setAll(pane);*/
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/Livreur.fxml"));
+        AnchorPane root = (AnchorPane) loader.load();
+       
+        menupane.getScene().setRoot(root);
     }
     
 }
