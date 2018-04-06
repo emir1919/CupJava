@@ -17,15 +17,24 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Orientation;
+import javafx.scene.Node;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javax.swing.JScrollPane;
 
 /**
  * FXML Controller class
@@ -42,6 +51,8 @@ public class HomeController implements Initializable {
     private JFXButton profilebutton;
     @FXML
     private AnchorPane content;
+    @FXML
+    private JFXButton msg;
 
     public AnchorPane getContent() {
         return content;
@@ -58,13 +69,16 @@ public class HomeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         if (main.user != null) {
             menupane.getChildren().remove(connexiobutton);
 
         } else {
             menupane.getChildren().remove(profilebutton);
+            menupane.getChildren().remove(msg);
+                    
         }
-        
+
     }
 
     @FXML
@@ -93,9 +107,18 @@ public class HomeController implements Initializable {
 
     @FXML
     private void ShowBrand(ActionEvent event) throws IOException {
+
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/edu/CupTest2/gui/show.fxml"));
+
         content.getChildren().setAll(pane);
 
+    }
+
+    @FXML
+    private void ShowMsg(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/edu/CupTest2/gui/Messagerie.fxml"));
+
+        content.getChildren().setAll(pane);
     }
 
 }

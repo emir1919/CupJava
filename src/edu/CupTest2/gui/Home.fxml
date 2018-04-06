@@ -20,6 +20,7 @@
             <JFXButton prefHeight="50.0" prefWidth="194.0" style="-fx-background-color: #F39C12;" text="Evenements" textFill="WHITE" />
             <JFXButton fx:id="profilebutton" onAction="#Afficherprofile" prefHeight="50.0" prefWidth="194.0" style="-fx-background-color: #F39C12;" text="Profile" textFill="WHITE" />
             <JFXButton fx:id="connexiobutton" onAction="#Connexion" prefHeight="50.0" prefWidth="195.0" style="-fx-background-color: #F39C12;" text="Connexion" textFill="WHITE" />
+            <JFXButton fx:id="msg" onAction="#ShowMsg" prefHeight="47.0" prefWidth="195.0" style="-fx-background-color: #F39C12;" text="Messagerie" textFill="WHITE" />
          </children>
       </VBox>
    </children>

@@ -100,18 +100,18 @@ public class UsersService {
         }
         return u;
     }
-    
+
     public void modifierClient(Users client, long id) throws SQLException {
         String req = "UPDATE users SET username=?,email = ? ,password = ? ,phonenumber=?, firstname=?, lastname=?, birthday=? WHERE id = ?";
         PreparedStatement ste = con.prepareStatement(req);
-        ste.setString(1,client.getUsername());
+        ste.setString(1, client.getUsername());
         ste.setString(2, client.getEmail());
         ste.setString(3, client.getPassword());
         ste.setFloat(4, client.getPhonenumber());
         ste.setString(5, client.getFirstname());
         ste.setString(6, client.getLastname());
-        ste.setDate(7,client.getBirthday());
-        
+        ste.setDate(7, client.getBirthday());
+
         ste.setLong(8, id);
         ste.executeUpdate();
         Alert alertSucc = new Alert(Alert.AlertType.CONFIRMATION);
@@ -121,4 +121,26 @@ public class UsersService {
         alertSucc.show();
     }
 
+    public Users searchByEmail(String email) throws SQLException {
+        Users u = null;
+        String req = "SELECT * FROM users WHERE email = ?";
+        PreparedStatement pre = con.prepareStatement(req);
+        pre.setString(1, email);
+        ResultSet rs = pre.executeQuery();
+        while (rs.next()) {
+            u = new Users();
+
+            u.setId(rs.getLong("id"));
+            u.setUsername(rs.getString("username"));
+            u.setEmail(rs.getString("email"));
+            u.setRoles(rs.getString("roles"));
+            u.setFirstname(rs.getString("firstname"));
+            u.setBirthday(rs.getDate("birthday"));
+            u.setLastname(rs.getString("lastname"));
+            u.setPhonenumber(rs.getLong("phonenumber"));
+            u.setPassword(rs.getString("password"));
+            u.setEnabled(rs.getInt("enabled"));
+        }
+        return u;
+    }
 }

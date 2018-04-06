@@ -33,7 +33,7 @@ public class main extends Application {
         try {
             Parent root=FXMLLoader.load(getClass().getResource(Routing.HOME));
             Scene scene=new Scene(root);
-            primaryStage.setScene(scene);
+            primaryStage.setScene(scene); 
             primaryStage.show();
         } catch (IOException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);

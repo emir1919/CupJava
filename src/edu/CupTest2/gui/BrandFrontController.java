@@ -137,7 +137,12 @@ public class BrandFrontController implements Initializable {
                                 try {
 
                                     CommentServices sv = new CommentServices();
-                                    Comment c = new Comment(list_commentaire.getSelectionModel().getSelectedItem().getId(), contenu_commentaire.getText(), "11", (int) (long)main.user.getId(), id);
+                                    DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+
+// Using DateFormat format method we can create a string 
+// representation of a date with the defined format.
+        String reportDate = df.format(new Date().getTime());
+                                    Comment c = new Comment(list_commentaire.getSelectionModel().getSelectedItem().getId(), contenu_commentaire.getText(), reportDate, (int) (long)main.user.getId(), id);
 
                                     sv.ModifierCommentaire(c);
                                     AnchorPane pane = new AnchorPane();

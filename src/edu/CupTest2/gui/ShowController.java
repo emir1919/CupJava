@@ -31,6 +31,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -50,6 +51,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javax.swing.JScrollPane;
 import org.controlsfx.control.Rating;
 
 /**
@@ -77,9 +79,12 @@ public class ShowController implements Initializable {
     int pos = 0;
     final int minPos = 0;
     final int maxPos = 100;
+    @FXML
+    private ScrollPane sp;
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
+    public void initialize(URL url, ResourceBundle rb) { 
+       
+ 
         try {
             // TODO
             enseignes = es.selectAllEnseigne();
@@ -232,10 +237,14 @@ public class ShowController implements Initializable {
         System.out.println(oas.size());
 
         System.out.println(enseignes.size());
+        
+
+        
         hb.getChildren().addAll(oa);
         //hb.getChildren().add(sb);
-
-        AP.getChildren().setAll(hb);
+        sp.setPannable(true);
+        sp.setContent(hb);
+        AP.getChildren().setAll(sp);
         /*scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
         scrollPane.setVmax(1320);
