@@ -8,8 +8,10 @@ package edu.CupTest2.gui;
 import com.jfoenix.controls.JFXButton;
 import edu.CupTest2.entities.Comment;
 import edu.CupTest2.entities.Enseigne;
+import edu.CupTest2.entities.favory_brand;
 import edu.CupTest2.services.CommentServices;
 import edu.CupTest2.services.EnseigneServices;
+import edu.CupTest2.services.FavoryBrandServices;
 import edu.CupTest2.services.RatingServices;
 import static java.awt.Color.white;
 import java.io.FileInputStream;
@@ -138,29 +140,72 @@ public class ShowController implements Initializable {
                 p.getChildren().add(vbox2);
                 Pane p3=new Pane();
                 Label l1=new Label("Nom:");
+                 Text t211=new Text("Nom:");
+                t211.setFill(Color.GREY);
                 Text t = new Text();
                 t.setText(enseignes.get(i).getName());
                 t.setFont(Font.font("Verdana", 15));
                 t.setFill(Color.rgb(243, 156, 18));
                 //t.setStyle(" -fx-padding: 40 0 0 80;");
+                t211.setTranslateY(13);
                 t.setTranslateX(33);
                 t.setTranslateY(13);
                 p3.setTranslateX(40);
                 p3.setTranslateY(40);
-                p3.getChildren().addAll(l1,t);
+                p3.getChildren().addAll(l1,t211);
                 Pane p4=new Pane();
                 
                 Label l2=new Label("Description:");
+                Text t21=new Text("Description:");
+                t21.setFill(Color.GREY);
                 Text t2 = new Text();
                 t2.setText(enseignes.get(i).getDescription());
                 t2.setFont(Font.font("Verdana", 10));
                 t2.setFill(Color.rgb(243, 156, 18));
                 //t.setStyle(" -fx-padding: 40 0 0 80;");
+                //t21.setTranslateX(73);
+                t21.setTranslateY(13);
                 t2.setTranslateX(73);
                 t2.setTranslateY(13);
                 p4.setTranslateX(40);
                 p4.setTranslateY(40);
-                p4.getChildren().addAll(l2,t2);
+                p4.getChildren().addAll(t21,t2);
+                Pane pf = new Pane();
+                JFXButton bf = new JFXButton();
+                                int k1 = enseignes.get(i).getId();
+
+                bf.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        FavoryBrandServices fbs=new FavoryBrandServices();
+                        favory_brand fbb=new favory_brand();
+                        fbb.setEnseigne_id(k1);
+                        fbb.setUser_id((int)(long)main.user.getId());
+                        try {
+                            fbs.AjouterFavori(fbb);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(ShowController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                    }
+                });
+                
+                bf.setText("Favoris");
+                ImageView img22 = new ImageView();
+                img22.setFitHeight(20);
+                img22.setFitWidth(20);
+                //img.setTranslateX(30);
+                FileInputStream file22 = null;
+                try {
+                    file22 = new FileInputStream("C:\\Users\\Emir\\Documents\\NetBeansProjects\\CupTest2\\src\\edu\\CupTest2\\images\\fav.png");
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(ShowBrandController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                img22.setImage(new Image(file22));
+                bf.setTranslateX(13);
+                pf.getChildren().addAll(bf, img22);
+                pf.setTranslateX(30);
+                pf.setTranslateY(50);
                 Pane p2 = new Pane();
                 JFXButton b = new JFXButton();
                                 int k = enseignes.get(i).getId();
@@ -198,7 +243,7 @@ public class ShowController implements Initializable {
                 b.setTranslateX(13);
                 p2.getChildren().addAll(b, img2);
                 p2.setTranslateX(30);
-                p2.setTranslateY(90);
+                p2.setTranslateY(70);
                 Rating rate = new Rating();
                 rate.setPartialRating(true);
                                 rate.setRating(rs.CalculerMoyRatring(enseignes.get(i).getId()));
@@ -222,11 +267,12 @@ public class ShowController implements Initializable {
                     
                 });
                 //System.out.println(rate.getRating());
-                rate.setTranslateY(110);
-                Label lf=new Label(rs.CalculerMoyRatring(enseignes.get(i).getId())+"/5 ("+rs.NbRating(enseignes.get(i).getId())+" votes)");
+                rate.setTranslateY(90);
+                Text lf=new Text(rs.CalculerMoyRatring(enseignes.get(i).getId())+"/5 ("+rs.NbRating(enseignes.get(i).getId())+" votes)");
+                lf.setFill(Color.GREY);
                 lf.setTranslateX(40);
-                lf.setTranslateY(120);
-                vbox1.getChildren().addAll(cir2, p3, p4, p2, rate,lf);
+                lf.setTranslateY(100);
+                vbox1.getChildren().addAll(cir2, p3, p4,pf,p2, rate,lf);
                 oas.add(vbox1);
             } catch (SQLException ex) {
                 Logger.getLogger(ShowController.class.getName()).log(Level.SEVERE, null, ex);

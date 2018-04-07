@@ -29,7 +29,7 @@
       </AnchorPane>
       <Pane fx:id="content2" layoutX="229.0" layoutY="100.0" prefHeight="200.0" prefWidth="498.0">
          <children>
-            <JFXListView fx:id="listmsg" layoutX="31.0" layoutY="38.0" prefHeight="97.0" prefWidth="345.0" />
+            <JFXListView fx:id="listmsg" layoutX="31.0" layoutY="38.0" onMouseClicked="#test" prefHeight="200.0" prefWidth="460.0" />
          </children></Pane>
    </children>
 </AnchorPane>

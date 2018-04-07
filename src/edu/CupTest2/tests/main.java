@@ -104,13 +104,18 @@ public class main {
         m1.setPiece("pdf");
         MsgServices ms = new MsgServices();
         //ms.AjouterMsg(m1);
-        System.out.println(ms.GetAllMsgByEmeteur(4).toString());
-        System.out.println(ms.GetAllMsgByRecepteur(4).toString());
+        //System.out.println(ms.GetAllMsgByEmeteur(4).toString());
+        //System.out.println(ms.GetAllMsgByRecepteur(4).toString());
         UsersService us=new UsersService();
-        System.out.println(us.searchByEmail("brand@brand.com").toString());
+        //System.out.println(us.searchByEmail("brand@brand.com").toString());
         favory_brand fb=new favory_brand(1,1,1);
         FavoryBrandServices fs=new FavoryBrandServices();
-        fs.AjouterFavori(fb);
+        //fs.AjouterFavori(fb);
+        //System.out.println(ms.getMsgById(1).toString());
+        //ms.ModifierMsg(3, 1);
+               // ms.ModifierMsg(3, 0);
+System.out.println(ms.GetCountReceived(1));
+System.out.println(ms.GetCountSended(1));
 
     }
 }
