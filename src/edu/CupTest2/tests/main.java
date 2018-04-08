@@ -23,6 +23,8 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -114,8 +116,21 @@ public class main {
         //System.out.println(ms.getMsgById(1).toString());
         //ms.ModifierMsg(3, 1);
                // ms.ModifierMsg(3, 0);
-System.out.println(ms.GetCountReceived(1));
-System.out.println(ms.GetCountSended(1));
+//System.out.println(ms.GetCountReceived(1));
+//System.out.println(ms.GetCountSended(1));
+//System.out.println(fs.GetFavoriById(1).toString());
+List<favory_brand> l=new ArrayList<favory_brand>();
+List<Enseigne> l1=new ArrayList<Enseigne>();
+
+l=fs.GetFavoriById(1);
+for(int i=0;i<l.size();i++)
+{
+    //System.out.println(l.get(i).getEnseigne_id());
+    l1.add(es.getEnseignebyId(l.get(i).getEnseigne_id()));
 
     }
+    //System.out.println(l1.toString());
+System.out.println(fs.getfavoryById(100,1).toString());
+    }
 }
+
