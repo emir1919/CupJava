@@ -33,6 +33,21 @@ public class Users implements Serializable {
     private long phonenumber;
     private int enabled;
 
+    
+    
+     public Users(int id, String username, String email, String password, Date birthday, String roles, String firstname, String lastname, long phonenumber, int enabled) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.birthday = birthday;
+        this.roles = roles;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.phonenumber = phonenumber;
+        this.enabled = enabled;
+    }
+    
     public int getEnabled() {
         return enabled;
     }
