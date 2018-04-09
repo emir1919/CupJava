@@ -8,6 +8,7 @@ package edu.CupTest2.gui;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import edu.CupTest2.entities.Enseigne;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -19,6 +20,7 @@ import edu.CupTest2.entities.Users;
 import java.io.IOException;
 import javafx.scene.control.Alert.AlertType;
 import edu.CupTest2.gui.main;
+import edu.CupTest2.services.EnseigneServices;
 import edu.CupTest2.utils.Routing;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -95,10 +97,21 @@ public class LoginController implements Initializable {
                 alert.setContentText("Vous êtes connecté en tant que :" + u.getUsername());
                
                 alert.showAndWait();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/CupTest2/gui/InfoBrand.fxml"));
+                AnchorPane root;
+                EnseigneServices es=new EnseigneServices();
+                Enseigne e=new Enseigne();
+                e=es.getEnseignebyUserId((int)(long)main.user.getId());
+                if(e==null)
+                {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/CupTest2/gui/AddBrand.fxml"));
+                root = (AnchorPane) loader.load();
 
+                }
+                else{
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/CupTest2/gui/InfoBrand.fxml"));
+                root = (AnchorPane) loader.load();
+                }
                  //FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/CupTest2/gui/Home.fxml"));
-        AnchorPane root = (AnchorPane) loader.load();
        
         txtPassword.getScene().setRoot(root);
 

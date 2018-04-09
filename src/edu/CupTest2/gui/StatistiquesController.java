@@ -80,7 +80,7 @@ public class StatistiquesController implements Initializable {
     private Pane pane;
 
     @FXML
-    private BarChart<String, Integer> barchart;
+    private BarChart<String, Double> barchart;
     @FXML
     private BarChart<String, Double> barchart2;
 
@@ -120,7 +120,7 @@ public class StatistiquesController implements Initializable {
             EnseigneServices es = new EnseigneServices();
             PatisserieServices ps = new PatisserieServices();
             ///Stat1
-            barchart.setTitle("Patisseries Par Enseigne");
+            /*barchart.setTitle("Patisseries Par Enseigne");
             XYChart.Series<String, Integer> series1 = new XYChart.Series<>();
             List<Enseigne> types = new ArrayList<>();
             types = es.selectAllEnseigne();
@@ -132,6 +132,30 @@ public class StatistiquesController implements Initializable {
                 int nb = bakeries.size();
                 XYChart.Data<String, Integer> data = new XYChart.Data<String, Integer>(t.getName(), nb);
                 series1.getData().add(data);
+
+            }
+            barchart.getData().addAll(series1);*/
+             /*barchart.setTitle("vente par produit");
+            XYChart.Series<String, Integer> series1 = new XYChart.Series<>();
+            List<Product> prods1 = new ArrayList<>();
+            prods1 = es.TopSalesByBrand(es.getEnseignebyUserId((int)(long)main.user.getId()).getId());
+            for (Product t : prods1) {
+
+                //@SuppressWarnings("UnusedAssignment")
+                XYChart.Data<String, Integer> data1 = new XYChart.Data<String, Integer>(t.getName(), t.getSales());
+                series1.getData().add(data1);
+
+            }
+            barchart.getData().addAll(series1);*/
+              barchart.setTitle("Revenu Par produit");
+            XYChart.Series<String, Double> series1 = new XYChart.Series<>();
+            List<Product> prods1 = new ArrayList<>();
+            prods1 = es.TopSalesByBrand(es.getEnseignebyUserId((int)(long)main.user.getId()).getId());
+            for (Product t : prods1) {
+
+                //@SuppressWarnings("UnusedAssignment")
+                XYChart.Data<String, Double> data1 = new XYChart.Data<String, Double>(t.getName(), t.getSales()*t.getPrice());
+                series1.getData().add(data1);
 
             }
             barchart.getData().addAll(series1);

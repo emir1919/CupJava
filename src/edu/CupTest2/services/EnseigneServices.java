@@ -233,6 +233,32 @@ public class EnseigneServices {
         }
         return products;
     }
+ public List<Product> TopSalesByBrand(int test) throws SQLException {
+        Product u = null;
+        List<Product> products = new ArrayList<>();
+
+         String requete2 = "select * from product  where enseigne_id = ? order by sales";
+        PreparedStatement st2 = con.prepareStatement(requete2);
+        st2.setInt(1, test);
+        ResultSet rs = st2.executeQuery();
+        while (rs.next()) {
+             products.add(new Product(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getDouble("price"),
+                        rs.getString("description"),
+                        rs.getDouble("rating"),
+                        rs.getDouble("reduction"),
+                        rs.getString("image_name"),
+                        rs.getInt("sales"),
+                        rs.getDate("updated_at"),
+                        rs.getDate("added_at"),
+                        rs.getInt("subcategory_id"),
+                        rs.getInt("enseigne_id")
+                ));
+        }
+        return products;
+    }
   public Enseigne getEnseignebyUserId(Integer id) {
         Enseigne p = null;
         String req = "select * from enseigne where user_id=?";

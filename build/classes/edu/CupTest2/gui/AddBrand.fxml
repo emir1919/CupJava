@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -10,38 +11,37 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.CupTest2.gui.AddBrandController">
    <children>
-      <ImageView fitHeight="459.0" fitWidth="611.0" layoutX="-1.0" layoutY="-57.0" pickOnBounds="true">
+      <ImageView fitHeight="459.0" fitWidth="631.0" layoutX="-1.0" layoutY="-57.0" pickOnBounds="true">
          <image>
-            <Image url="@../images/choc.jpg" />
+            <Image url="@../images/cup.jpg" />
          </image>
       </ImageView>
-      <Text fill="#77d2eb" layoutX="7.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="66.60157132148743">
+      <Text fill="#8d3d28" layoutX="6.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="66.60157132148743">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="#e40e0e" layoutX="45.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Félicitation! lancez votre enseigne">
+      <Text fill="#e40e0e" layoutX="26.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Félicitation! lancez votre enseigne">
          <font>
-            <Font size="36.0" />
+            <Font name="System Bold Italic" size="36.0" />
          </font>
       </Text>
-      <TextField fx:id="name" layoutX="132.0" layoutY="98.0" />
-      <Text fill="#77d2eb" layoutX="8.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fill="#77d2eb" layoutX="9.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PhoneNumber">
+      <Text fill="#8d3d28" layoutX="8.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="#77d2eb" layoutX="14.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fax">
+      <Text fill="#8d3d28" layoutX="9.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PhoneNumber">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="#77d2eb" layoutX="14.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+      <Text fill="#8d3d28" layoutX="14.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fax">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#8d3d28" layoutX="14.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
          <font>
             <Font size="18.0" />
          </font>
@@ -50,22 +50,22 @@
       <TextField fx:id="tel" layoutX="132.0" layoutY="212.0" />
       <TextField fx:id="fax" layoutX="132.0" layoutY="268.0" />
       <TextField fx:id="email" layoutX="132.0" layoutY="323.0" />
-      <Text fill="#77d2eb" layoutX="313.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Website">
+      <Text fill="#8d3d28" layoutX="313.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Website">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="#77d2eb" layoutX="313.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CodeRC">
+      <Text fill="#8d3d28" layoutX="313.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CodeRC">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="#77d2eb" layoutX="313.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logo">
+      <Text fill="#8d3d28" layoutX="313.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logo">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="#77d2eb" layoutX="313.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+      <Text fill="#8d3d28" layoutX="313.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
          <font>
             <Font size="18.0" />
          </font>
@@ -74,7 +74,8 @@
       <TextField fx:id="code" layoutX="432.0" layoutY="159.0" />
       <TextField fx:id="img" layoutX="432.0" layoutY="212.0" prefHeight="25.0" prefWidth="67.0" />
       <TextField fx:id="text" layoutX="432.0" layoutY="265.0" />
-      <Button fx:id="BrandAddButton" layoutX="403.0" layoutY="323.0" mnemonicParsing="false" onAction="#AddBrand" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #119974; -fx-background-radius: 20;" stylesheets="@Style.css" text="Confirmer" textFill="#fcfcfc" />
+      <Button fx:id="BrandAddButton" layoutX="421.0" layoutY="319.0" mnemonicParsing="false" onAction="#AddBrand" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: transparant; -fx-background-radius: 20;" stylesheets="@Style.css" text="Confirmer" textFill="#fcfcfc" />
       <Button fx:id="upload" layoutX="517.0" layoutY="212.0" mnemonicParsing="false" onAction="#upload" text="parcourir" />
+      <JFXTextField fx:id="name" layoutX="132.0" layoutY="82.0" />
    </children>
 </AnchorPane>
