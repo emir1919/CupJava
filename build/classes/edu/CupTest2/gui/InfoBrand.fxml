@@ -63,11 +63,10 @@
       </AnchorPane>
       <TableView fx:id="TableId" layoutX="216.0" layoutY="52.0" prefHeight="200.0" prefWidth="379.0">
         <columns>
-          <TableColumn fx:id="nom" prefWidth="75.0" text="Nom" />
-          <TableColumn fx:id="adresse" prefWidth="75.0" text="Adresse" />
-            <TableColumn fx:id="tel" prefWidth="75.0" text="Tel" />
-            <TableColumn fx:id="site" prefWidth="75.0" text="Site Web" />
-            <TableColumn fx:id="logo" prefWidth="75.0" text="Logo" />
+          <TableColumn fx:id="nom" prefWidth="90.0" text="Nom" />
+          <TableColumn fx:id="adresse" prefWidth="92.0" text="Adresse" />
+            <TableColumn fx:id="tel" prefWidth="93.0" text="Tel" />
+            <TableColumn fx:id="site" prefWidth="103.0" text="Site Web" />
         </columns>
       </TableView>
       <Button fx:id="edit" layoutX="355.0" layoutY="287.0" mnemonicParsing="false" onAction="#editbrand" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: blue; -fx-background-radius: 20;" text="Modifier" textFill="#f8f8f8">

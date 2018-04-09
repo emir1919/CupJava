@@ -130,7 +130,8 @@ for(int i=0;i<l.size();i++)
 
     }
     //System.out.println(l1.toString());
-System.out.println(fs.getfavoryById(100,1).toString());
+//System.out.println(fs.getfavoryById(100,1).toString());
+System.out.println(es.getEnseignebyUserId(1).toString());
     }
 }
 

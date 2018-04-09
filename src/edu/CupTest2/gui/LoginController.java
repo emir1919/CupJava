@@ -95,7 +95,9 @@ public class LoginController implements Initializable {
                 alert.setContentText("Vous êtes connecté en tant que :" + u.getUsername());
                
                 alert.showAndWait();
-                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/CupTest2/gui/Home.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/CupTest2/gui/InfoBrand.fxml"));
+
+                 //FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/CupTest2/gui/Home.fxml"));
         AnchorPane root = (AnchorPane) loader.load();
        
         txtPassword.getScene().setRoot(root);

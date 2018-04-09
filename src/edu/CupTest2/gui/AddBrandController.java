@@ -121,7 +121,7 @@ public class AddBrandController implements Initializable {
             Path p1 = Paths.get("C:\\Users\\Emir\\Documents\\NetBeansProjects\\CupTest2\\src\\edu\\Cuptest2\\images\\" + selectedfile.getName());
             Files.copy(p, p1, REPLACE_EXISTING);
             e1.setDescription(text.getText());
-            e1.setId_user(1);
+            e1.setId_user((int)(long)main.user.getId());
             EnseigneServices es = new EnseigneServices();
             es.ajouterEnseigne(e1);
             InfoBrandController.NameEnseigne=e1.getName();

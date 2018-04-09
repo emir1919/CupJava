@@ -92,12 +92,12 @@ public class UpdateBrandController implements Initializable {
             // TODO
             FileInputStream file = null;
             EnseigneServices es=new EnseigneServices();
-            Enseigne en=es.getEnseignebyId(IdEnseigne);
-            try {
+            Enseigne en=es.getEnseignebyUserId((int)(long)main.user.getId());
+            /*try {
                 es.getImage(background);
             } catch (SQLException ex) {
                 Logger.getLogger(AddBakeryController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
             file = new FileInputStream("C:\\Users\\Emir\\Documents\\NetBeansProjects\\CupTest2\\src\\edu\\CupTest2\\images\\" + en.getLogo());
             background.setImage(new Image(file));
         } catch (FileNotFoundException ex) {

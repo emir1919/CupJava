@@ -66,6 +66,7 @@ public class UpdateBakeryController implements Initializable {
     private static Bakery selectedBakery;
     @FXML
     private ImageView background;
+            EnseigneServices es=new EnseigneServices();
 
     /**
      * Initializes the controller class.
@@ -80,13 +81,12 @@ public class UpdateBakeryController implements Initializable {
         try {
             // TODO
             FileInputStream file = null;
-            EnseigneServices es=new EnseigneServices();
-            Enseigne en=es.getEnseignebyId(AddBakeryController.IdEnseigne);
-            try {
+            Enseigne en=es.getEnseignebyUserId((int)(long)main.user.getId());
+           /* try {
                 es.getImage(background);
             } catch (SQLException ex) {
                 Logger.getLogger(AddBakeryController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
             file = new FileInputStream("C:\\Users\\Emir\\Documents\\NetBeansProjects\\CupTest2\\src\\edu\\CupTest2\\images\\" + en.getLogo());
             background.setImage(new Image(file));
         } catch (FileNotFoundException ex) {
@@ -182,7 +182,7 @@ public class UpdateBakeryController implements Initializable {
             e1.setPhoneNumber(tel.getText());
             e1.setFax(fax.getText());
             e1.setEmail(email.getText());
-            e1.setId_enseigne(AddBakeryController.IdEnseigne);
+            e1.setId_enseigne(es.getEnseignebyUserId((int)(long)main.user.getId()).getId());
             e1.setId_user(1);
             PatisserieServices ps=new PatisserieServices();
             ps.modifierPatisserie(selectedBakery.getId(), nom.getText(), adresse.getText(), tel.getText(), fax.getText(), email.getText());

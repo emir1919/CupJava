@@ -139,7 +139,7 @@ public class StatistiquesController implements Initializable {
             barchart2.setTitle("Produit par note");
             XYChart.Series<String, Double> series2 = new XYChart.Series<>();
             List<Product> prods = new ArrayList<>();
-            prods = es.TopProductByBrand(1);
+            prods = es.TopProductByBrand(es.getEnseignebyUserId((int)(long)main.user.getId()).getId());
             for (Product t : prods) {
 
                 //@SuppressWarnings("UnusedAssignment")

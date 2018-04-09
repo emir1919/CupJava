@@ -77,6 +77,7 @@ public class InfoBakeryController implements Initializable {
     static Integer IdEnseigne;
     @FXML
     private ImageView background;
+                EnseigneServices es=new EnseigneServices();
 
     /**
      * Initializes the controller class.
@@ -86,20 +87,19 @@ public class InfoBakeryController implements Initializable {
          try {
             // TODO
             FileInputStream file = null;
-            EnseigneServices es=new EnseigneServices();
-            Enseigne en=es.getEnseignebyId(IdEnseigne);
-            try {
+            Enseigne en=es.getEnseignebyUserId((int)(long)main.user.getId());
+            /*try {
                 es.getImage(background);
             } catch (SQLException ex) {
                 Logger.getLogger(AddBakeryController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
             file = new FileInputStream("C:\\Users\\Emir\\Documents\\NetBeansProjects\\CupTest2\\src\\edu\\CupTest2\\images\\" + en.getLogo());
             background.setImage(new Image(file));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AddBakeryController.class.getName()).log(Level.SEVERE, null, ex);
         }
         // TODO
-        bakeries = ps.getBakerybyBrand(IdEnseigne);
+        bakeries = ps.getBakerybyBrand(es.getEnseignebyUserId((int)(long)main.user.getId()).getId());
         //en=es.getEnseignebyName(NameEnseigne);
         nom.setCellValueFactory(new PropertyValueFactory<Bakery, String>("Name"));
         adresse.setCellValueFactory(new PropertyValueFactory<Bakery, String>("Address"));
@@ -211,7 +211,7 @@ public class InfoBakeryController implements Initializable {
         if(TableId.getSelectionModel().getSelectedItems().size()!=0){
             PatisserieServices ps=new PatisserieServices();
            ps.supprimerPatisserie(TableId.getSelectionModel().getSelectedItems().get(0).getId());
-            ObservableList<Bakery>obe=FXCollections.observableArrayList(ps.getBakerybyBrand(IdEnseigne));
+            ObservableList<Bakery>obe=FXCollections.observableArrayList(ps.getBakerybyBrand(es.getEnseignebyUserId((int)(long)main.user.getId()).getId()));
             TableId.setItems(obe);
         }
        else{

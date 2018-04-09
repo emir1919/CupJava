@@ -70,6 +70,8 @@ public class AddBakeryController implements Initializable {
     private ImageView background;
     @FXML
     private ChoiceBox userchoices=new ChoiceBox();
+                EnseigneServices es=new EnseigneServices();
+
     List<Users> listuser;
     public ImageView getBackground() {
         return background;
@@ -87,7 +89,6 @@ public class AddBakeryController implements Initializable {
         try {
             // TODO
             FileInputStream file = null;
-            EnseigneServices es=new EnseigneServices();
             try {
                 listuser=es.getAllUsers();
             } catch (SQLException ex) {
@@ -95,12 +96,12 @@ public class AddBakeryController implements Initializable {
             }
             listuser.stream().forEach(b -> userchoices.getItems().add(b.getUsername()));
 
-            Enseigne en=es.getEnseignebyId(IdEnseigne);
-            try {
+            Enseigne en=es.getEnseignebyUserId((int)(long)main.user.getId());
+            /*try {
                 es.getImage(background);
             } catch (SQLException ex) {
                 Logger.getLogger(AddBakeryController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
             file = new FileInputStream("C:\\Users\\Emir\\Documents\\NetBeansProjects\\CupTest2\\src\\edu\\CupTest2\\images\\" + en.getLogo());
             background.setImage(new Image(file));
         } catch (FileNotFoundException ex) {
@@ -194,7 +195,7 @@ public class AddBakeryController implements Initializable {
             e1.setPhoneNumber(tel.getText());
             e1.setFax(fax.getText());
             e1.setEmail(email.getText());
-            e1.setId_enseigne(IdEnseigne);
+            e1.setId_enseigne(es.getEnseignebyUserId((int)(long)main.user.getId()).getId());
             Long l=listuser.get(index).getId();
             int a=(int)(long)l;
             e1.setId_user(a);

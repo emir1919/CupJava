@@ -184,9 +184,11 @@ public class LocalisationController extends JavascriptObject implements Initiali
         //Marker marker=new Marker(new MarkerOptions().position(new LatLong(36.800399, 10.186620)));
 
         //googlemap.addMarker(marker);
+        EnseigneServices es=new EnseigneServices();
+        
         PatisserieServices ps=new PatisserieServices();
         List<Bakery> bakeries=new ArrayList<Bakery>();
-        bakeries=ps.getBakerybyBrand(1);
+        bakeries=ps.getBakerybyBrand(es.getEnseignebyUserId((int)(long)main.user.getId()).getId());
         for(Bakery b : bakeries)
         {
                       addressTextFieldAction(b.getAddress());

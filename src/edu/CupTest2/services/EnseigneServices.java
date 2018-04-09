@@ -233,6 +233,29 @@ public class EnseigneServices {
         }
         return products;
     }
- 
+  public Enseigne getEnseignebyUserId(Integer id) {
+        Enseigne p = null;
+        String req = "select * from enseigne where user_id=?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = con.prepareStatement(req);
+            preparedStatement.setInt(1, id);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                p = new Enseigne();
+                p.setId(rs.getInt(1));
+                p.setName(rs.getString(3));
+                p.setAddress(rs.getString(4));
+                p.setPhoneNumber(rs.getString(5));
+                p.setWebSite(rs.getString(8));
+                p.setLogo(rs.getString(9));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return p;
+
+    }
 
 }

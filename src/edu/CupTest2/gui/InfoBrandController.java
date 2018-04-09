@@ -69,8 +69,6 @@ public class InfoBrandController implements Initializable {
     @FXML
     private TableColumn<Enseigne, String> site;
     @FXML
-    private TableColumn<Enseigne, String> logo;
-    @FXML
     private Button edit;
     @FXML
     private TableView<Enseigne> TableId;
@@ -96,18 +94,18 @@ public class InfoBrandController implements Initializable {
                
                 // TODO
                 //enseignes = es.selectAllEnseigne();
-                en=es.getEnseignebyName(NameEnseigne);
-                try {
+                en=es.getEnseignebyUserId((int)(long)main.user.getId());
+                /*try {
                     es.getImage(background);
                 } catch (SQLException ex) {
                     Logger.getLogger(InfoBrandController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                }*/
                 nom.setCellValueFactory(new PropertyValueFactory<Enseigne, String>("name"));
                 adresse.setCellValueFactory(new PropertyValueFactory<Enseigne, String>("address"));
                 tel.setCellValueFactory(new PropertyValueFactory<Enseigne, Integer>("PhoneNumber"));
                 site.setCellValueFactory(new PropertyValueFactory<Enseigne, String>("WebSite"));
-                logo.setCellValueFactory(new PropertyValueFactory<Enseigne, String>("logo"));
-                TableId.getColumns().addAll(nom, adresse, tel, site, logo);
+                //logo.setCellValueFactory(new PropertyValueFactory<Enseigne, String>("Email"));
+                TableId.getColumns().addAll(nom, adresse, tel, site);
                 //logo.setImage(new Image("file:"+logo.toPath().toString()));
                 oa = FXCollections.observableArrayList(en);
                 TableId.setItems(oa);
