@@ -36,6 +36,8 @@ public class Cupcake extends Application {
     public static   List<Panier> Panier = new ArrayList<Panier>();
     public static String currentroute = Routing.LOGIN;
     public static String lastroute = null;
+      public static int user_id=1 ; 
+    public static int Selected_id=1 ;
 
     @Override
     public void start(Stage primaryStage) {
@@ -63,7 +65,7 @@ public class Cupcake extends Application {
         //endtest
         try {
             // FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/Login.fxml"));
-            Parent root = FXMLLoader.load(getClass().getResource(Routing.HOME));
+            Parent root = FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/BakeryOrders.fxml"));
 
             //AnchorPane root = (AnchorPane) loader.load();
             Scene scene = new Scene(root);

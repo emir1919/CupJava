@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
@@ -14,17 +15,17 @@
     </stylesheets>
    <children>
       <AnchorPane fx:id="content" layoutX="186.0" layoutY="92.0" prefHeight="852.0" prefWidth="1134.0" />
-      <VBox fx:id="menupane" layoutY="92.0" prefHeight="852.0" prefWidth="186.0" spacing="20.0" style="-fx-background-color: #7b7d7d;">
+      <VBox fx:id="menupane" layoutY="92.0" prefHeight="852.0" prefWidth="186.0" spacing="20.0">
          <children>
             <JFXButton prefHeight="50.0" prefWidth="192.0" style="-fx-background-color: #F39C12;" text="Acceuil" textFill="WHITE" />
             <JFXButton prefHeight="50.0" prefWidth="192.0" style="-fx-background-color: #F39C12;" text="Enseignes" textFill="WHITE" />
-            <JFXButton prefHeight="50.0" prefWidth="192.0" style="-fx-background-color: #F39C12;" text="Categories" textFill="WHITE" />
-            <JFXButton prefHeight="50.0" prefWidth="194.0" style="-fx-background-color: #F39C12;" text="Produits" textFill="WHITE" />
-            <JFXButton prefHeight="50.0" prefWidth="194.0" style="-fx-background-color: #F39C12;" text="Evenements" textFill="WHITE" />
+            <JFXButton onAction="#AfficherCategories" prefHeight="50.0" prefWidth="192.0" style="-fx-background-color: #F39C12;" text="Categories" textFill="WHITE" />
+            <JFXButton onAction="#AfficherProduits" prefHeight="50.0" prefWidth="194.0" style="-fx-background-color: #F39C12;" text="Produits" textFill="WHITE" />
+            <JFXButton fx:id="eventbutton" onAction="#ListEvents" prefHeight="50.0" prefWidth="194.0" style="-fx-background-color: #F39C12;" text="Evenements" textFill="WHITE" />
             <JFXButton fx:id="profilebutton" onAction="#Afficherprofile" prefHeight="50.0" prefWidth="194.0" style="-fx-background-color: #F39C12;" text="Profile" textFill="WHITE" />
             <JFXButton fx:id="connexiobutton" onAction="#Connexion" prefHeight="50.0" prefWidth="195.0" style="-fx-background-color: #F39C12;" text="Connexion" textFill="WHITE" />
             <JFXButton fx:id="deconnectbutton" onAction="#Deconnexion" prefHeight="50.0" prefWidth="195.0" style="-fx-background-color: #F39C12;" text="Deconnexion" textFill="WHITE" />
-            <JFXButton fx:id="livreurbutton" onAction="#livreurhome" prefHeight="50.0" prefWidth="195.0" style="-fx-background-color: #F39C12;" text="Livraisons" textFill="WHITE" />
+            <JFXButton fx:id="msgbutton" onAction="#ShowMsg" prefHeight="50.0" prefWidth="195.0" style="-fx-background-color: #F39C12;" text="Messagerie" textFill="WHITE" />
          </children>
       </VBox>
       <AnchorPane fx:id="PanierPane" layoutX="1102.0" prefHeight="75.0" prefWidth="218.0">
@@ -38,5 +39,12 @@
             <Text fx:id="txtPrixTotal" layoutX="82.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix total" />
          </children>
       </AnchorPane>
+      <HBox fx:id="headpane" layoutX="186.0" prefHeight="50.0" prefWidth="908.0">
+         <children>
+            <JFXButton fx:id="livreurbutton" onAction="#livreurhome" prefHeight="50.0" prefWidth="195.0" style="-fx-background-color: #F39C12;" text="Livraisons" textFill="WHITE" />
+         </children>
+      </HBox>
+      <Text fx:id="connected" layoutX="6.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connecté en tant que :" wrappingWidth="157.34766268730164" />
+      <Text fx:id="NomPrenom" layoutX="6.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom Prenom" wrappingWidth="157.34766268730164" />
    </children>
 </AnchorPane>

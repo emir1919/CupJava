@@ -36,6 +36,7 @@
     <class>edu.cupcake.entities.Line_Order</class>
     <class>edu.cupcake.entities.Panier</class>
     <class>edu.cupcake.entities.PaiementStripe</class>
+    <class>edu.cupcake.entities.ObservableLineOrders</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/cupcup?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

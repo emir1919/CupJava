@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="852.0" prefWidth="1134.0" styleClass="mainFxmlClass" stylesheets="@../ressources/front_template.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.cupcake.controllers.ProductsFrontController">
+   <children>
+      <BorderPane fx:id="mainPane" layoutX="215.0" prefHeight="400.0" prefWidth="632.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <JFXListView id="product-list-view" fx:id="productsLV" prefHeight="268.0" prefWidth="350.0" stylesheets="@../ressources/front_template.css" />
+         </center>
+         <bottom>
+            <Pane prefHeight="63.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+         </bottom>
+         <left>
+            <VBox prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Recherche Avancée" textAlignment="CENTER" underline="true">
+                     <VBox.margin>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox prefHeight="38.0" prefWidth="250.0">
+                     <children>
+                        <JFXTextField fx:id="searchTF" prefHeight="25.0" prefWidth="157.0" promptText="Nom de produit">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </JFXTextField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="45.0" prefWidth="250.0">
+                     <children>
+                        <Label text="Prix maximal" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <JFXSlider fx:id="maxPriceSL" max="2500.0" value="2500.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="45.0" prefWidth="250.0">
+                     <children>
+                        <Label text="Prix minimal" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <JFXSlider fx:id="minPriceSL" max="2500.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="44.0" prefWidth="250.0">
+                     <children>
+                        <JFXRadioButton fx:id="pCherR" text="Plus cher">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="orderBy" />
+                           </toggleGroup>
+                        </JFXRadioButton>
+                        <JFXRadioButton fx:id="mCherR" text="Moins cher" toggleGroup="$orderBy" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="44.0" prefWidth="250.0">
+                     <children>
+                        <JFXRadioButton fx:id="pPopR" selected="true" text="Plus populaire" toggleGroup="$orderBy" />
+                        <JFXRadioButton fx:id="mPopR" text="Moins populaire" toggleGroup="$orderBy" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="44.0" prefWidth="209.0">
+                     <children>
+                        <JFXButton fx:id="searchBtn" onAction="#searchByName" text="Chercher" />
+                        <JFXButton fx:id="resetBtn" onAction="#reset" text="Reset" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </left>
+         <right>
+            <VBox prefHeight="750.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="295.0" text="Nos Recommendations" textAlignment="CENTER" textFill="#8919f2">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <JFXListView fx:id="suggLV" prefHeight="700.0" prefWidth="350.0" styleClass="recList" />
+               </children>
+            </VBox>
+         </right>
+      </BorderPane>
+   </children>
+</AnchorPane>

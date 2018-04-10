@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import edu.cupcake.entities.Users;
 import edu.cupcake.services.UsersService;
+import edu.cupcake.utils.Routes;
 import java.io.IOException;
 import java.net.URL;
 //import java.sql.Date;
@@ -47,43 +48,6 @@ public class ProfileController implements Initializable {
 
        ObservableList<String> RoleList = FXCollections.observableArrayList("ROLE_USER", "ROLE_ADMIN");
 
-    @FXML
-    private TextField txtNom;
-    @FXML
-    private TextField txtPrenom;
-    @FXML
-    private TextField txtEmail;
-    @FXML
-    private TextField txtTel;
-    @FXML
-    private DatePicker txtDate;
-    @FXML
-    private JFXPasswordField txtPassword;
-    @FXML
-    private JFXTextField txtPseudo;
-    @FXML
-    private Button btnInscrire;
-    @FXML
-    private RadioButton radioHomme;
-    @FXML
-    private RadioButton radioFemme;
-    @FXML
-    private TextField txtAdresse;
-    @FXML
-
-    private TextField txtCfPassword;
-    @FXML
-    private VBox VBoxInfoPersonel;
-    @FXML
-    private ToggleGroup gender;
-    @FXML
-    private VBox VBoxMdp;
-
-    @FXML
-    private JFXComboBox Rolecombo;
-    
-    @FXML
-    private Label Role;
     
      @FXML
     private AnchorPane profilecontent;
@@ -91,6 +55,8 @@ public class ProfileController implements Initializable {
      public static int afficherprofile=0;
      public static int afficheradresses=0;
      public static int affichercommandes=0;
+             public static int convertirpf=0;
+
      
     
     /**
@@ -136,6 +102,21 @@ public class ProfileController implements Initializable {
            }
            affichercommandes=0;
         }
+        
+         if (convertirpf!=0) {
+            AnchorPane pane1;
+           try {
+               pane1 = FXMLLoader.load(getClass().getResource(Routes.ConvertView));
+                               profilecontent.getChildren().setAll(pane1);
+
+           } catch (IOException ex) {
+               Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           convertirpf=0;
+        }
+        
+        
+        
         
 
 
@@ -195,5 +176,12 @@ public class ProfileController implements Initializable {
         
 
     } 
+
+    @FXML
+    private void ShowMesPoints(ActionEvent event) throws IOException {
+        AnchorPane pane1=FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/MesPoints.fxml"));
+
+                profilecontent.getChildren().setAll(pane1);
+    }
     
 }

@@ -32,6 +32,51 @@ public class Users implements Serializable {
     private String lastname;
     private long phonenumber;
     private int enabled;
+    private int CIN;
+    private String image;
+    private int confirmed;
+
+    public int getCIN() {
+        return CIN;
+    }
+
+    public void setCIN(int CIN) {
+        this.CIN = CIN;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public int getConfirmed() {
+        return confirmed;
+    }
+
+    public void setConfirmed(int confirmed) {
+        this.confirmed = confirmed;
+    }
+
+    public int getPF() {
+        return PF;
+    }
+
+    public void setPF(int PF) {
+        this.PF = PF;
+    }
+
+    public int getReduction() {
+        return Reduction;
+    }
+
+    public void setReduction(int Reduction) {
+        this.Reduction = Reduction;
+    }
+    private int PF;
+    private int Reduction;
 
     
     
@@ -46,6 +91,28 @@ public class Users implements Serializable {
         this.lastname = lastname;
         this.phonenumber = phonenumber;
         this.enabled = enabled;
+    }
+      public Users(int id, String FirstName, String LastName, String email, String password, int PhoneNumber, int CIN,String image) {
+        this.id = id;
+        this.firstname = FirstName;
+        this.lastname = LastName;
+        this.email = email;
+        this.password = password;
+        this.phonenumber = PhoneNumber;
+        this.CIN = CIN;
+        this.image = image;
+    }
+
+    public Users(int id, String FirstName, String LastName, String email, String password, int PhoneNumber, int CIN, String image,int confirmed) {
+        this.id = id;
+        this.firstname = FirstName;
+        this.lastname = LastName;
+        this.email = email;
+        this.password = password;
+        this.phonenumber = PhoneNumber;
+        this.CIN = CIN;
+        this.image = image;
+        this.confirmed = confirmed;
     }
     
     public int getEnabled() {
@@ -156,12 +223,14 @@ public class Users implements Serializable {
         return true;
     }
 
-   
-
     @Override
     public String toString() {
-        return "Users{" + "id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + ", birthday=" + birthday + ", roles=" + roles + ", firstname=" + firstname + ", lastname=" + lastname + ", phonenumber=" + phonenumber + '}';
+        return username;
     }
+
+   
+
+    
 
     public Users(String username, String email, String password, Date birthday, String roles, String firstname, String lastname, long phonenumber) {
         this.username = username;

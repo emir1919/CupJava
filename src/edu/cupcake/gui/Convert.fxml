@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="1097.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.cupcake.controllers.ConvertController">
+   <children>
+      <Label layoutX="227.0" layoutY="124.0" text="Vous bénéficier de" textFill="#494949">
+         <font>
+            <Font name="Elephant Italic" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="txtNum" layoutX="462.0" layoutY="104.0" prefHeight="73.0" prefWidth="43.0" text="22" textFill="RED">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="520.0" layoutY="124.0" text="DT de réduction pour vos achat" textFill="#494949">
+         <font>
+            <Font name="Elephant Italic" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="376.0" layoutY="159.0" text="Merci pour votre fidélité" textFill="#494949">
+         <font>
+            <Font name="Elephant Italic" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

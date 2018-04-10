@@ -14,6 +14,8 @@ import edu.cupcake.entities.Users;
 import java.sql.Date;
 import edu.cupcake.utils.BCrypt;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.scene.control.Alert;
 
 /**
@@ -184,6 +186,69 @@ public class UsersService {
             System.out.println("Utilisateur trouvé !");
         }
         return u;
+    }
+    
+      public void EditUserPF(Users u) throws SQLException {
+        
+        
+        String req = "UPDATE users SET PointsF = ?,Reduction = ? WHERE id = ?";
+        PreparedStatement st = con.prepareStatement(req);
+        
+        st.setInt(1,u.getPF());
+        st.setInt(2,u.getReduction());
+        st.setInt(3,u.getId());
+ 
+        st.executeUpdate();
+
+    }
+    
+        public Users getUserPFById(long id) throws SQLException {
+        Users u = null;
+        String req = "SELECT * FROM `users` WHERE id = ?";
+        PreparedStatement pre = con.prepareStatement(req);
+        pre.setLong(1, id);
+        ResultSet rs = pre.executeQuery();
+        while (rs.next()) {
+            u = new Users();
+
+            u.setId(rs.getInt("id"));
+            u.setEmail(rs.getString("email"));
+            u.setRoles(rs.getString("roles"));
+            u.setPF(rs.getInt("PointsF"));
+            u.setReduction(rs.getInt("Reduction"));
+
+
+            System.out.println("Utilisateur trouvé !");
+        }
+        return u;
+    }
+        
+        public List<Users> getUserbyRole(String role) throws SQLException {
+                List<Users> myList = new ArrayList<Users>();
+
+          
+        String req = "SELECT * FROM users WHERE roles LIKE ?";
+        PreparedStatement pre = con.prepareStatement(req);
+        pre.setString(1, "%"+role+"%");
+        ResultSet rs = pre.executeQuery();
+        while (rs.next()) {
+          Users u = new Users();
+
+            u.setId(rs.getInt("id"));
+            u.setUsername(rs.getString("username"));
+            u.setEmail(rs.getString("email"));
+            u.setRoles(rs.getString("roles"));
+            u.setFirstname(rs.getString("firstname"));
+            u.setBirthday(rs.getDate("birthday"));
+            u.setLastname(rs.getString("lastname"));
+            u.setPhonenumber(rs.getLong("phonenumber"));
+            u.setPassword(rs.getString("password"));
+            u.setEnabled(rs.getInt("enabled"));
+                                myList.add(u);
+
+            
+        }
+        return myList;
     }
 
 }
