@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="695.0" prefWidth="1134.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9" fx:controller="edu.cupcake.controllers.ValidationLivraisonCommandeController">
+   <children>
+      <TableView fx:id="tableView" layoutX="29.0" layoutY="14.0" prefHeight="322.0" prefWidth="1079.0">
+         <columns>
+            <TableColumn fx:id="Nom" prefWidth="75.0" text="Nom" />
+            <TableColumn fx:id="Prenom" prefWidth="101.0" text="Prenom" />
+            <TableColumn fx:id="Tel" prefWidth="103.0" text="Telephone" />
+            <TableColumn fx:id="Cp" prefWidth="101.0" text="Code postal" />
+            <TableColumn fx:id="Pays" prefWidth="129.0" text="Pays" />
+            <TableColumn fx:id="Ville" prefWidth="90.0" text="Ville" />
+            <TableColumn fx:id="Adresse" prefWidth="252.0" text="Adresse" />
+            <TableColumn fx:id="Complement" prefWidth="227.0" text="Complement" />
+         </columns>
+      </TableView>
+      <JFXButton layoutX="450.0" layoutY="358.0" onAction="#ValiderAdresse" prefHeight="40.0" prefWidth="236.0" style="-fx-background-color: #F39C12;" text="Valider l'adresse de livraison" textFill="WHITE">
+         <font>
+            <Font name="Roboto Medium" size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

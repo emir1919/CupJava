@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="CupcakePU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>edu.cupcake.entities.Thread</class>
+    <class>edu.cupcake.entities.NewsFeed</class>
+    <class>edu.cupcake.entities.FinancialTransactions</class>
+    <class>edu.cupcake.entities.Events</class>
+    <class>edu.cupcake.entities.Notification</class>
+    <class>edu.cupcake.entities.UserEvent</class>
+    <class>edu.cupcake.entities.Claims</class>
+    <class>edu.cupcake.entities.Review</class>
+    <class>edu.cupcake.entities.Rating</class>
+    <class>edu.cupcake.entities.Enseigne</class>
+    <class>edu.cupcake.entities.Bakery</class>
+    <class>edu.cupcake.entities.Promotion</class>
+    <class>edu.cupcake.entities.Product</class>
+    <class>edu.cupcake.entities.Planning</class>
+    <class>edu.cupcake.entities.Stock</class>
+    <class>edu.cupcake.entities.Payment</class>
+    <class>edu.cupcake.entities.Message</class>
+    <class>edu.cupcake.entities.Payments</class>
+    <class>edu.cupcake.entities.Users</class>
+    <class>edu.cupcake.entities.ThreadMetadata</class>
+    <class>edu.cupcake.entities.Adds</class>
+    <class>edu.cupcake.entities.Category</class>
+    <class>edu.cupcake.entities.TypeClaim</class>
+    <class>edu.cupcake.entities.Credits</class>
+    <class>edu.cupcake.entities.SubCategory</class>
+    <class>edu.cupcake.entities.LineOrder</class>
+    <class>edu.cupcake.entities.MessageMetadata</class>
+    <class>edu.cupcake.entities.Delivery</class>
+    <class>edu.cupcake.entities.PaymentInstructions</class>
+    <class>edu.cupcake.entities.Adresses</class>
+    <class>edu.cupcake.entities.Orders</class>
+    <class>edu.cupcake.entities.Line_Order</class>
+    <class>edu.cupcake.entities.Panier</class>
+    <class>edu.cupcake.entities.PaiementStripe</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/cupcup?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
+    </properties>
+  </persistence-unit>
+</persistence>

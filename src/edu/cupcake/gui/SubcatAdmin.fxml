@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="584.0" prefWidth="734.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.cupcake.controllers.SubcatAdminController">
+    <stylesheets>
+        <URL value="@back_template.css" />
+    </stylesheets>
+   <children>
+      <HBox layoutX="10.0" layoutY="10.0" prefHeight="584.0" prefWidth="734.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="584.0" prefWidth="209.0" style="-fx-background-color: #212221;">
+               <children>
+                  <Text fill="#fcfafa" layoutX="37.0" layoutY="34.0" lineSpacing="105.869140625" strokeType="OUTSIDE" strokeWidth="0.0" text="Cupcake">
+                     <font>
+                        <Font name="Comic Sans MS" size="24.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="subCategoryManagementBtn" layoutX="41.0" layoutY="145.0" mnemonicParsing="false" onAction="#showSubCategoryManagement" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #212221;" text="Sous Catégories" textFill="#fcfcfc">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="24.0" fitWidth="22.0" layoutX="18.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ressources/images/if_icon-07_95293.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="24.0" fitWidth="22.0" layoutX="18.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ressources/images/if_icon-07_95293.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="categoryManagementBtn" layoutX="63.0" layoutY="80.0" mnemonicParsing="false" onAction="#showCategoryManagement" style="-fx-background-color: #212221;" text="Catégories" textFill="#fcfcfc">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <SplitPane fx:id="subcategoryManagementPane" dividerPositions="0.47107438016528924" orientation="VERTICAL" prefHeight="584.0" prefWidth="737.0">
+               <items>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="259.0" prefWidth="720.0">
+                     <children>
+                        <GridPane alignment="CENTER" prefHeight="225.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="514.0" minWidth="10.0" prefWidth="401.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="319.0" minWidth="10.0" prefWidth="319.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <JFXTextField fx:id="scNameTF" alignment="CENTER" prefHeight="46.0" prefWidth="307.0" promptText="Nom de la sous catégorie" />
+                                    <HBox alignment="CENTER" prefHeight="74.0" prefWidth="307.0">
+                                       <children>
+                                          <Label text="Categorie : " />
+                                          <ChoiceBox fx:id="categoriesCB" prefWidth="150.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="82.0" prefWidth="307.0">
+                                       <children>
+                                          <JFXButton fx:id="addSCategoryBtn" onAction="#addSCategory" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: #5cb85c;" text="Ajouter" textFill="WHITE">
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                          </JFXButton>
+                                          <JFXButton fx:id="editSCategoryBtn" disable="true" onAction="#editSCategory" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: #f0ad4e;" text="Modifier" textFill="WHITE">
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                          </JFXButton>
+                                          <JFXButton fx:id="deleteSCategoryBtn" disable="true" onAction="#deleteSCategory" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: #d9534f;" text="Supprimer" textFill="WHITE">
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                          </JFXButton>
+                                          <JFXButton fx:id="cSClearBtn" onAction="#cSClearAll" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: #5bc0de;" text="Clear" textFill="WHITE" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="142.0" prefWidth="418.0" GridPane.columnIndex="1">
+                                 <children>
+                                    <ImageView fx:id="csIV" fitHeight="178.0" fitWidth="261.0" pickOnBounds="true" preserveRatio="true" />
+                                    <HBox>
+                                       <children>
+                                          <JFXButton fx:id="csImageBtn" onAction="#csGetImage" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: #5cb85c;" text="Parcourir" textAlignment="CENTER" textFill="WHITE">
+                                             <HBox.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </HBox.margin>
+                                          </JFXButton>
+                                          <Label fx:id="csimgPathLbl" prefHeight="37.0" prefWidth="172.0" text="Path : " />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="201.0" prefWidth="720.0">
+                     <children>
+                        <TableView fx:id="scategoriesTV" layoutY="16.0" prefHeight="289.0" prefWidth="533.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columns>
+                              <TableColumn fx:id="cSNameCol" prefWidth="228.0" text="Nom" />
+                              <TableColumn fx:id="cSupdatedAtCol" prefWidth="206.0" text="Modifié le" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </items>
+            </SplitPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

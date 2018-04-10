@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="FacturePane" prefHeight="756.0" prefWidth="887.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.cupcake.controllers.AfficherFactureController">
+   <children>
+      <AnchorPane id="AnchorPane" fx:id="FacturePane" layoutX="6.0" prefHeight="616.0" prefWidth="641.0">
+         <children>
+            <Text fx:id="txtReference" layoutX="174.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reference">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
+            <Label layoutX="38.0" layoutY="36.0" text="FACTURE:">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="46.0" layoutY="93.0" text="Date:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Text fx:id="txtDate" layoutX="110.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <VBox fx:id="VBoxInfoPersonel" layoutX="537.0" layoutY="14.0" prefHeight="158.0" prefWidth="336.0" spacing="9.0" styleClass="card">
+               <children>
+                  <Label styleClass="card-title" text="Adresse de livraison" textFill="#595959">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="90.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Separator prefWidth="200.0" />
+                  <GridPane alignment="CENTER" hgap="2.0" prefHeight="291.0" prefWidth="233.0" vgap="7.0">
+                     <columnConstraints>
+                        <ColumnConstraints />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.66668701171875" minWidth="10.0" prefWidth="219.66668701171875" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Nom">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="txtNom" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Label text="Prenom" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="txtPrenom" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ville" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="txtAdresse" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="txtVille" strokeType="OUTSIDE" strokeWidth="0.0" text="Ville" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tel" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="txtTel" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            <Label layoutX="46.0" layoutY="125.0" text="Status:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Text fx:id="txtStatus" layoutX="110.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Pane layoutX="42.0" layoutY="222.0" prefHeight="47.0" prefWidth="720.0">
+               <children>
+                  <Label layoutX="85.0" layoutY="14.0" text="Produit">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="226.0" layoutY="13.0" text="Prix">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="372.0" layoutY="9.0" text="Quantité">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="574.0" layoutY="10.0" text="Total">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <HBox layoutX="94.0" layoutY="281.0" prefHeight="244.0" prefWidth="700.0">
+               <children>
+                  <GridPane fx:id="grid" alignment="CENTER" prefHeight="215.0" prefWidth="669.0" vgap="5.0">
+                     <columnConstraints>
+                        <ColumnConstraints fx:id="rowProduit1" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints fx:id="rowPrix1" hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="164.0" />
+                        <ColumnConstraints fx:id="rowQte1" hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="170.0" />
+                        <ColumnConstraints fx:id="rowTotal1" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="133.0" minHeight="10.0" prefHeight="118.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="133.0" minHeight="10.0" prefHeight="118.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="205.0" minHeight="10.0" prefHeight="121.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="205.0" minHeight="10.0" prefHeight="121.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="205.0" minHeight="10.0" prefHeight="121.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="205.0" minHeight="10.0" prefHeight="121.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="205.0" minHeight="10.0" prefHeight="121.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </children>
+            </HBox>
+            <Line endX="100.0" layoutX="705.0" layoutY="570.0" startX="-100.0" />
+            <Label layoutX="605.0" layoutY="584.0" text="Prix total :">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Text fx:id="txtPrixTotal" layoutX="733.0" layoutY="600.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <JFXButton layoutX="331.0" layoutY="625.0" onAction="#pdf" prefHeight="40.0" prefWidth="161.0" style="-fx-background-color: #F39C12;" text="PDF" textFill="WHITE">
+         <font>
+            <Font name="Roboto Medium" size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

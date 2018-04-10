@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="852.0" prefWidth="1134.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.cupcake.controllers.AccueilController">
+    <stylesheets>
+        <URL value="@/edu/cupcake/ressources/front_template.css" />
+    </stylesheets>
+   <children>
+      <JFXListView id="recList" fx:id="prodLV" layoutX="34.0" layoutY="111.0" orientation="HORIZONTAL" prefHeight="330.0" prefWidth="1066.0" />
+      <Label alignment="CENTER" layoutX="390.0" layoutY="21.0" prefHeight="52.0" prefWidth="355.0" text="Notre sélection" textAlignment="CENTER">
+         <font>
+            <Font name="Blackadder ITC" size="48.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

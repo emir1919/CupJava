@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="852.0" prefWidth="1134.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9" fx:controller="edu.cupcake.controllers.AffectationLivreurController">
+   <children>
+      <AnchorPane fx:id="calendarpane" layoutX="10.0" layoutY="17.0" prefHeight="837.0" prefWidth="1128.0" />
+   </children>
+</AnchorPane>
