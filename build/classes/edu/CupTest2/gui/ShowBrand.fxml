@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.Rating?>
+
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1320.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.CupTest2.gui.ShowBrandController">
+   <children>
+      <HBox fx:id="hbox1" layoutX="78.0" layoutY="72.0" prefHeight="230.0" prefWidth="450.0">
+         <children>
+            <VBox fx:id="box" prefHeight="230.0" prefWidth="202.0">
+               <children>
+                  <Pane prefHeight="248.0" prefWidth="100.0">
+                     <children>
+                        <VBox layoutX="14.0" layoutY="20.0" prefHeight="189.0" prefWidth="166.0" style="-fx-background-color: white; -fx-background-radius: 15px;">
+                           <children>
+                              <ImageView fx:id="BrandLogo" fitHeight="57.0" fitWidth="129.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                                 <VBox.margin>
+                                    <Insets left="50.0" top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Text fx:id="BrandName" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                 <VBox.margin>
+                                    <Insets left="70.0" top="15.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Text fx:id="BrandDescription" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                 <VBox.margin>
+                                    <Insets left="70.0" top="15.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <JFXButton fx:id="DetailsButton" onAction="#MoreDetails" style="-fx-background-radius: 10px;">
+                                 <VBox.margin>
+                                    <Insets left="70.0" top="15.0" />
+                                 </VBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/detailsicon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <HBox prefHeight="37.0" prefWidth="100.0">
+                                 <children>
+                                    <Rating fx:id="rate" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox fx:id="hbox2" layoutX="103.0" layoutY="350.0" prefHeight="241.0" prefWidth="488.0" />
+   </children>
+</AnchorPane>
