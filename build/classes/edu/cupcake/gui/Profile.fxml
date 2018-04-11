@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="852.0" prefWidth="1134.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.cupcake.controllers.ProfileController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f39c12" height="42.0" layoutX="537.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="220.0" />
+      <Text layoutX="592.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon profil">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <HBox layoutX="92.0" layoutY="82.0" prefHeight="42.0" prefWidth="1022.0" spacing="10.0">
+         <children>
+            <JFXButton onAction="#Afficherprofile" prefHeight="36.0" prefWidth="222.0" style="-fx-background-color: #F39C12;" text="Informations personnelles" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton onAction="#showadresses" prefHeight="36.0" prefWidth="222.0" style="-fx-background-color: #F39C12;" text="Mes adresses" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton onAction="#affichercommandes" prefHeight="36.0" prefWidth="222.0" style="-fx-background-color: #F39C12;" text="Mes commandes" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton onAction="#ShowMesPoints" prefHeight="36.0" prefWidth="222.0" style="-fx-background-color: #F39C12;" text="Points de fidélité" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
+      <AnchorPane fx:id="profilecontent" layoutX="14.0" layoutY="124.0" prefHeight="686.0" prefWidth="1097.0" />
+   </children>
+</AnchorPane>

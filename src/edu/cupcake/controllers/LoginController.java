@@ -125,8 +125,8 @@ public class LoginController implements Initializable {
             System.out.println(u);
             if (u != null && u.getEnabled() == 1 && BCrypt.checkpw(txtPassword.getText(), u.getPassword())) {
                 Cupcake.user = u;
-
-                System.out.println("sooooo nice");
+                Cupcake.user_id = u.getId();
+                /*System.out.println("sooooo nice");*/
                 txtetat.setText("");
 
                 Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -135,7 +135,13 @@ public class LoginController implements Initializable {
                 alert.setContentText("Vous êtes connecté en tant que :" + u.getUsername());
 
                 alert.showAndWait();
+                
+                // YASSINE's CODE
                 AnchorPane root = getRole(u);
+                
+
+                //Amir's Code
+                
                 /*AnchorPane root;
 
                 EnseigneServices es = new EnseigneServices();
@@ -165,11 +171,12 @@ public class LoginController implements Initializable {
         }
     }
     
+    //YASSINE REDIRECT TO
     public AnchorPane getRole(Users user) throws IOException{
         AnchorPane root;
         //ObservableList<String> RoleList = FXCollections.observableArrayList("ROLE_USER", "ROLE_ADMIN","ROLE_DELIVERYMAN","ROLE_BAKERY","ROLE_BRAND");
         if (user.getRoles().contains("ROLE_ADMIN")) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/CategoriesAdmin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/BackAdmin.fxml"));
             root = (AnchorPane) loader.load();
         }else if(user.getRoles().contains("ROLE_BRAND")){
             EnseigneServices es = new EnseigneServices();
@@ -185,7 +192,7 @@ public class LoginController implements Initializable {
                 root = (AnchorPane) loader.load();
             }
         }else if(user.getRoles().contains("ROLE_BAKERY")){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/BakeryManagement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/BackBakery.fxml"));
             root = (AnchorPane) loader.load();
         }else{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/Home.fxml"));

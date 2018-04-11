@@ -195,10 +195,10 @@ public class ShowClaimsBrandController implements Initializable {
     @FXML
     private void loadDataFromDatabase() {
         
-                 Connection cn = Connexion.getInstance().getConnection();  
+       Connection cn = Connexion.getInstance().getConnection();  
 
         EnseigneServices es = new EnseigneServices();
-        Enseigne ens = es.getEnseignebyUserId(cupcake.Cupcake.user_id);
+        Enseigne ens = es.getEnseignebyUserId(cupcake.Cupcake.user.getId());
         id_ens = ens.getId();
 
         try {
@@ -233,7 +233,7 @@ public class ShowClaimsBrandController implements Initializable {
             txtEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
             txtTel.setCellValueFactory(new PropertyValueFactory<>("phone"));
             txtType.setCellValueFactory(new PropertyValueFactory<>("typeclaimId"));
-            txtDescription.setCellValueFactory(new PropertyValueFactory<>("Description"));
+            txtDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
 
 
             tableClaims.setItems(data1);
@@ -338,7 +338,7 @@ public class ShowClaimsBrandController implements Initializable {
             claims = cs.findBytypeclaim(t.getId());
             
             EnseigneServices es = new EnseigneServices();
-            Enseigne ens = es.getEnseignebyUserId(cupcake.Cupcake.user_id);
+            Enseigne ens = es.getEnseignebyUserId(cupcake.Cupcake.user.getId());
             
             int nb = 0;
                 for(Claims c : claims){

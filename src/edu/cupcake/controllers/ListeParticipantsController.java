@@ -123,6 +123,30 @@ public class ListeParticipantsController implements Initializable {
                 }
                 return false; 
             });
+            
+                            txtNom.setCellFactory(column -> {
+                return new TableCell<Users, String>() {
+                    
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setText(empty ? "" : getItem().toString());
+                        setGraphic(null);
+
+                        TableRow<Users> currentRow = getTableRow();
+
+                if (!isEmpty()) {
+
+                    if(item.contains("'")) 
+                        currentRow.setStyle("-fx-background-color:lightgreen");
+                    else
+                        currentRow.setStyle("-fx-background-color:red");
+                }
+              }
+               };
+              });
+            
+            
         });
 
          
@@ -191,7 +215,7 @@ public class ListeParticipantsController implements Initializable {
         
         EnseigneServices enss = new EnseigneServices();
         Enseigne ens = new Enseigne();
-        ens = enss.getEnseignebyUserId(cupcake.Cupcake.user_id);
+        ens = enss.getEnseignebyUserId(cupcake.Cupcake.user.getId());
         int id_ens = ens.getId();
 
         try {
@@ -218,11 +242,11 @@ public class ListeParticipantsController implements Initializable {
                 data.add(new Users(
                      
                 rs.getInt("id"),
-                rs.getString("FirstName"),
+                rs.getString("firstname"),
                 nom,
                 rs.getString("email"),
                 rs.getString("password"),
-                rs.getInt("PhoneNumber"),
+                rs.getInt("phonenumber"),
                 rs.getInt("CIN"),
                 rs.getString("image_name"),
                 rs.getInt("confirmed")
@@ -231,11 +255,11 @@ public class ListeParticipantsController implements Initializable {
 
             }
             
-            txtNom.setCellValueFactory(new PropertyValueFactory<>("LastName"));
-            txtPrenom.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
+            txtNom.setCellValueFactory(new PropertyValueFactory<>("lastname"));
+            txtPrenom.setCellValueFactory(new PropertyValueFactory<>("firstname"));
             txtCIN.setCellValueFactory(new PropertyValueFactory<>("CIN"));
             txtEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-            txtPhone.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
+            txtPhone.setCellValueFactory(new PropertyValueFactory<>("phonenumber"));
             
            
                 txtNom.setCellFactory(column -> {

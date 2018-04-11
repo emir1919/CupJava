@@ -224,7 +224,7 @@ public class ShowController implements Initializable {
             //img.setTranslateX(30);
             FileInputStream file52 = null;
             try {
-                file52 = new FileInputStream("C:\\Users\\Emir\\Desktop\\Cupcake\\src\\edu\\cupcake\\ressources\\images\\info-g.png");
+                file52 = new FileInputStream("C:\\Users\\yassi\\Desktop\\Cupcake\\src\\edu\\cupcake\\ressources\\images\\info-g.png");
                 img52.setImage(new Image(file52));
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(ShowBrandController.class.getName()).log(Level.SEVERE, null, ex);
@@ -349,7 +349,7 @@ public class ShowController implements Initializable {
                 FileInputStream file22 = null;
                 
                 try {
-                    file22 = new FileInputStream("C:\\Users\\Emir\\Desktop\\Cupcake\\src\\edu\\cupcake\\ressources\\images\\fav.png");
+                    file22 = new FileInputStream("C:\\Users\\yassi\\Desktop\\Cupcake\\src\\edu\\cupcake\\ressources\\images\\fav.png");
                     img22.setImage(new Image(file22));
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(ShowController.class.getName()).log(Level.SEVERE, null, ex);
@@ -391,7 +391,7 @@ public class ShowController implements Initializable {
                 //img.setTranslateX(30);
                 FileInputStream file2 = null;
                 try {
-                    file2 = new FileInputStream("C:\\Users\\Emir\\Desktop\\Cupcake\\src\\edu\\cupcake\\ressources\\images\\info-g.png");
+                    file2 = new FileInputStream("C:\\Users\\yassi\\Desktop\\Cupcake\\src\\edu\\cupcake\\ressources\\images\\info-g.png");
                     img2.setImage(new Image(file2));
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(ShowBrandController.class.getName()).log(Level.SEVERE, null, ex);

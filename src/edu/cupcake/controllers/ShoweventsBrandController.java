@@ -48,6 +48,7 @@ import edu.cupcake.services.EnseigneServices;
 import edu.cupcake.services.EventsService;
 import edu.cupcake.utils.Connexion;
 import edu.cupcake.utils.Routes;
+import javafx.scene.layout.AnchorPane;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
@@ -111,6 +112,8 @@ public class ShoweventsBrandController implements Initializable {
     private JFXButton LP;
     @FXML
     private JFXButton CP;
+    
+    private AnchorPane PaneId;
 
     /**
      * Initializes the controller class.
@@ -153,14 +156,11 @@ public class ShoweventsBrandController implements Initializable {
     @FXML
     private void Ajouter(ActionEvent event) throws IOException {
         
-        Parent root = null;
-        root = FXMLLoader.load(getClass().getResource(Routes.AddAddsVIEW));
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setMaximized(true);
-        stage.show();
-        ((Node) (event.getSource())).getScene().getWindow().hide();
+            BackBrandController.addevent = 1;           
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/BackBrand.fxml"));
+            AnchorPane root = (AnchorPane) loader.load();
+            tableEvent.getScene().setRoot(root);
+        
     }
 
 
@@ -176,15 +176,12 @@ public class ShoweventsBrandController implements Initializable {
             alert1.show();
         } else {
 
-            cupcake.Cupcake.Selected_id = tableEvent.getSelectionModel().getSelectedItem().getId();
-            Parent root = null;
-            root = FXMLLoader.load(getClass().getResource(Routes.EditEventsVIEW));
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setMaximized(true);
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
+            cupcake.Cupcake.Selected_id = tableEvent.getSelectionModel().getSelectedItem().getId();           
+            BackBrandController.editevent = 1;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/BackBrand.fxml"));
+            AnchorPane root = (AnchorPane) loader.load();
+            tableEvent.getScene().setRoot(root);
+
 
         }
 
@@ -253,7 +250,7 @@ public class ShoweventsBrandController implements Initializable {
         
         EnseigneServices enss = new EnseigneServices();
         Enseigne ens = new Enseigne();
-        ens = enss.getEnseignebyUserId(cupcake.Cupcake.user_id);
+        ens = enss.getEnseignebyUserId(cupcake.Cupcake.user.getId());
         int id_ens = ens.getId();
 
         try {
@@ -285,12 +282,12 @@ public class ShoweventsBrandController implements Initializable {
 
             }
 
-            txtTitle.setCellValueFactory(new PropertyValueFactory<>("Title"));
-            txtDate.setCellValueFactory(new PropertyValueFactory<>("DateStart"));
-            txtType.setCellValueFactory(new PropertyValueFactory<>("Type"));
-            txtAdresse.setCellValueFactory(new PropertyValueFactory<>("Adress"));
+            txtTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+            txtDate.setCellValueFactory(new PropertyValueFactory<>("dateStart"));
+            txtType.setCellValueFactory(new PropertyValueFactory<>("type"));
+            txtAdresse.setCellValueFactory(new PropertyValueFactory<>("adress"));
             txtNBP.setCellValueFactory(new PropertyValueFactory<>("nbPlaces"));
-            txtDescription.setCellValueFactory(new PropertyValueFactory<>("Description"));
+            txtDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
 
 
             tableEvent.setItems(data);

@@ -93,13 +93,12 @@ public class Line_OrderService {
         List<ObservableLineOrders> myList = new ArrayList<ObservableLineOrders>();
         try {
 
-            String requete2 = "SELECT line_order.id as lineid,orders.Date,product.Name,orders.PaymentState,orders.id,line_order.affected,line_order.qte,line_order.product_id,orders.amount,line_order.commande_id FROM line_order INNER JOIN stock ON stock.Product_id=line_order.product_id INNER JOIN product ON product.id=line_order.product_id INNER JOIN bakery ON bakery.id=stock.Bakery_id INNER JOIN orders ON orders.id=line_order.commande_id WHERE bakery.id= ?";
+            //String requete2 = "SELECT line_order.id as lineid,stock.Bakery_id,orders.Date,product.Name,orders.PaymentState,orders.id,line_order.affected,line_order.qte,line_order.product_id,orders.amount,line_order.commande_id FROM line_order INNER JOIN stock ON stock.Product_id=line_order.product_id INNER JOIN product ON product.id=line_order.product_id INNER JOIN bakery ON bakery.id=stock.Bakery_id INNER JOIN orders ON orders.id=line_order.commande_id WHERE bakery.id= ?";
+            String requete2 = "SELECT DISTINCT line_order.id as lineid,orders.Date,product.Name,orders.PaymentState,orders.id,line_order.affected,line_order.qte,line_order.product_id,orders.amount,line_order.commande_id FROM line_order INNER JOIN stock ON stock.Product_id=line_order.product_id INNER JOIN product ON product.id=line_order.product_id INNER JOIN bakery ON bakery.id=stock.Bakery_id INNER JOIN orders ON orders.id=line_order.commande_id WHERE product.Enseigne_id= ?";
             PreparedStatement st2 = con.prepareStatement(requete2);
-            st2.setInt(1, id);
+            st2.setInt(1, 3);
             ResultSet rs = st2.executeQuery();
             while (rs.next()) {
-              
-               
                 myList.add(new ObservableLineOrders(
                 rs.getInt("lineid"),
                         rs.getDate("Date"), 
@@ -110,9 +109,10 @@ public class Line_OrderService {
                         rs.getInt("commande_id"), 
                         rs.getInt("product_id"), 
                         rs.getString("affected")));
-                
-                        
             }
+            
+            
+            //myList = (List<ObservableLineOrders>) myList.stream().filter((ObservableLineOrders o) -> o.getBakeryId() == id);
         } catch (SQLException ex) {
             Logger.getLogger(AdressesService.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -127,7 +127,7 @@ public class AddEventsController implements Initializable {
             EnseigneServices es = new EnseigneServices();
             Enseigne ens = new Enseigne();
             
-            ens = es.getEnseignebyId(cupcake.Cupcake.user_id);
+            ens = es.getEnseignebyUserId(cupcake.Cupcake.user.getId()); 
             int id_ens = ens.getId();
             
             Date date = Date.valueOf(txtDate.getValue());
@@ -160,7 +160,7 @@ public class AddEventsController implements Initializable {
     private void importImage(ActionEvent event) throws MalformedURLException {
         
                 BufferedOutputStream stream = null;
-	String globalPath="C:\\wamp\\www\\cupcake";
+	String globalPath="C:\\xampp\\htdocs\\cupcake\\uploads";
         
         
         try {

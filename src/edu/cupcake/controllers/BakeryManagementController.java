@@ -68,7 +68,6 @@ public class BakeryManagementController implements Initializable {
     private TableColumn<?, ?> sSalesCol;
     @FXML
     private JFXSlider sQuantitySlider;
-    @FXML
     private Button stockManagementBtn;
 
     /**
@@ -248,17 +247,7 @@ public class BakeryManagementController implements Initializable {
         }
     }
 
-    @FXML
-    private void showStockManagement(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/BakeryManagement.fxml"));
-            Parent root = loader.load();
-            stockManagementBtn.getScene().setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-    }
+    
     
     
     

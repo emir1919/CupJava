@@ -95,14 +95,10 @@ public class ErreurScanController implements Initializable {
     @FXML
     private void Refresh(ActionEvent event) throws IOException {
         
-            Parent root = null;
-            root = FXMLLoader.load(getClass().getResource(Routes.ListEventsVIEW));
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setMaximized(true);
-            stage.show();
-            ((Node) (event.getSource())).getScene().getWindow().hide();
+           BackBrandController.listevconf = 1;
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/BackBrand.fxml"));
+           AnchorPane root = (AnchorPane) loader.load();
+           Type.getScene().setRoot(root);
         
 
     }

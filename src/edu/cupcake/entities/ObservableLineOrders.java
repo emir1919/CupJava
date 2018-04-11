@@ -25,6 +25,15 @@ public class ObservableLineOrders extends Line_Order {
     private String produit;
     private float prix;
     private String payment;
+    private int bakeryId;
+
+    public int getBakeryId() {
+        return bakeryId;
+    }
+
+    public void setBakeryId(int bakeryId) {
+        this.bakeryId = bakeryId;
+    }
 
   public int getId() {
         return id;
@@ -77,6 +86,7 @@ public class ObservableLineOrders extends Line_Order {
         this.produit = produit;
         this.prix = prix;
         this.payment = payment;
+        //this.bakeryId = bakeryId;
     }
     
     

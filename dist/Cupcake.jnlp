@@ -11,7 +11,7 @@
   </resources>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Cupcake.jar" size="7256573" download="eager" />
+    <jar href="Cupcake.jar" size="7256984" download="eager" />
     <jar href="lib/GMapsFX-1.1.1.jar" size="80262" download="eager" />
     <jar href="lib/GMapsFX-2.10.0.jar" size="154471" download="eager" />
     <jar href="lib/GMapsFX-2.12.1-SNAPSHOT.jar" size="3893078" download="eager" />

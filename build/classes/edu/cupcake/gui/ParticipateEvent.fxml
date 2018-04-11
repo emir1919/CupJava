@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="edu.cupcake.controllers.ParticipateEventController">
+   <children>
+      <ImageView fx:id="qrView" fitHeight="196.0" fitWidth="246.0" layoutX="166.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="18.0" layoutY="55.0" text="Scanner ce QR code avec notre application mobile" textFill="#ae4747">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="56.0" layoutY="90.0" text="et veuillez le présenté chez la caisse de la" textFill="#ae4747">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="125.0" text="patisserie qui à organiser cette évenement pour" textFill="#ae4747">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="138.0" layoutY="160.0" text="confirmer votre présence" textFill="#ae4747">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+   <effect>
+      <InnerShadow />
+   </effect>
+</AnchorPane>

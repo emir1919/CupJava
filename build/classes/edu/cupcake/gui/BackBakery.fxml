@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1200.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="edu.cupcake.controllers.BackBakeryController">
+    <stylesheets>
+        <URL value="@/edu/cupcake/ressources/back_template.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane prefHeight="914.0" prefWidth="209.0" style="-fx-background-color: #212221;">
+         <children>
+            <Text fill="#fcfafa" layoutX="37.0" layoutY="34.0" lineSpacing="105.869140625" strokeType="OUTSIDE" strokeWidth="0.0" text="Cupcake">
+               <font>
+                  <Font name="Comic Sans MS" size="24.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="24.0" fitWidth="22.0" layoutX="18.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ressources/images/if_icon-07_95293.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="showCommandsBtn" layoutX="56.0" layoutY="202.0" mnemonicParsing="false" onAction="#showCommands" style="-fx-background-color: #212221;" text="Commandes" textFill="#fcfcfc">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="stockManagementBtn" layoutX="63.0" layoutY="125.0" mnemonicParsing="false" onAction="#showStockManagement" style="-fx-background-color: #212221;" text="Mon Stock" textFill="#fcfcfc">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="24.0" fitWidth="22.0" layoutX="18.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ressources/images/if_icon-07_95293.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="content" layoutX="209.0" prefHeight="914.0" prefWidth="994.0" />
+   </children>
+</AnchorPane>

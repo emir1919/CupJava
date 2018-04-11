@@ -136,7 +136,7 @@ public class EditAddsController implements Initializable {
             
             EnseigneServices es = new EnseigneServices();
             Enseigne ens = new Enseigne();
-            ens = es.getEnseignebyUserId(cupcake.Cupcake.user_id);
+            ens = es.getEnseignebyUserId(cupcake.Cupcake.user.getId());
             
             Adds a = new Adds(ens.getId(), title.getText(), path, description.getText(), Integer.parseInt(rank.getText()));
             as.EditAdds(a,cupcake.Cupcake.Selected_id);

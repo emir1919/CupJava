@@ -12,6 +12,7 @@ import edu.cupcake.entities.ObservableLineOrders;
 import edu.cupcake.entities.Users;
 import edu.cupcake.services.AdressesService;
 import edu.cupcake.services.Line_OrderService;
+import edu.cupcake.services.ProductService;
 import edu.cupcake.services.UsersService;
 import java.io.IOException;
 import java.net.URL;
@@ -48,13 +49,10 @@ public class BakeryOrdersController implements Initializable {
     
         ObservableList<Users> DeliveryList ;
             List<Users> deliverys;
+            
+            private int currentBakery = 1;
+    private int currentBrand = 1;
 
-                //FXCollections.observableArrayList(us.getUserbyRole("ROLE_DELIVERYMAN"));
-
-    @FXML
-    private Button stockManagementBtn;
-    @FXML
-    private Button cmdbutton;
     @FXML
     private TableView<ObservableLineOrders> orderslist;
     @FXML
@@ -79,6 +77,14 @@ public class BakeryOrdersController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        ProductService service = new ProductService();
+        if(cupcake.Cupcake.user != null){
+            currentBakery = service.getCurrentBakery(cupcake.Cupcake.user.getId()).get("id");
+            currentBrand = service.getCurrentBakery(cupcake.Cupcake.user.getId()).get("enseigne_id");
+        }
+        
+        
        btnAffecter.setVisible(false);
         try {
             initCol();
@@ -149,7 +155,7 @@ public class BakeryOrdersController implements Initializable {
         try {
             Line_OrderService lsr = new Line_OrderService();
             listAdresses = new ArrayList<>();
-            listAdresses = lsr.getLineOrdersbyBakeryId(3);
+            listAdresses = lsr.getLineOrdersbyBakeryId(currentBakery);
               System.out.println(listAdresses.toString());
             listViewAdresses = FXCollections.observableArrayList(listAdresses);
             orderslist.setItems(listViewAdresses);
@@ -160,13 +166,6 @@ public class BakeryOrdersController implements Initializable {
 
     }
 
-    @FXML
-    private void showStockManagement(ActionEvent event) {
-    }
-
-    @FXML
-    private void ShowLineOrders(ActionEvent event) {
-    }
 
     @FXML
     private void AffecterLivraison(ActionEvent event) throws IOException {

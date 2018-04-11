@@ -225,7 +225,7 @@ public class EditEventsController implements Initializable {
             EnseigneServices es = new EnseigneServices();
             Enseigne ens = new Enseigne();
             
-            ens = es.getEnseignebyUserId(cupcake.Cupcake.user_id);
+            ens = es.getEnseignebyUserId(cupcake.Cupcake.user.getId());
             int id_ens = ens.getId();
             
             java.sql.Date date = java.sql.Date.valueOf(txtDate.getValue());

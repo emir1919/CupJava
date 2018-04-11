@@ -152,7 +152,7 @@ public class ShowEventsFrontController implements Initializable {
     @FXML
     private void ParticiperAction(ActionEvent event) throws SQLException {
         
-        if(cupcake.Cupcake.user_id == 0){
+        if(cupcake.Cupcake.user == null){
             
             Alert alert1 = new Alert(Alert.AlertType.WARNING);
             alert1.setTitle("Accée réfusée");
