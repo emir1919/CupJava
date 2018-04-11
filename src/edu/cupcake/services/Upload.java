@@ -22,8 +22,8 @@ import java.util.logging.Logger;
 public class Upload {
     public String UploadFile(File file){
         BufferedOutputStream stream = null;
-        String globalPath="C:\\wamp64\\www\\cupcake\\uploads";
-        String localPath="localhost:80/";
+        String globalPath="C:\\xampp\\htdocs\\cupcake\\uploads";
+        String localPath="localhost/";
         String fileName = file.getName();
         fileName=fileName.replace(" ", "_");
         try {

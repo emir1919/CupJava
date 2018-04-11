@@ -27,6 +27,25 @@ public class Line_Order implements Serializable {
     private int commande_id;
     private int product_id;
     private String affected;
+    private int lineorder_id;
+
+    public int getLineorder_id() {
+        return lineorder_id;
+    }
+
+    public void setLineorder_id(int lineorder_id) {
+        this.lineorder_id = lineorder_id;
+    }
+
+    public Line_Order(int id, int qte, int commande_id, int product_id, String affected, int lineorder_id) {
+        this.id = id;
+        this.qte = qte;
+        this.commande_id = commande_id;
+        this.product_id = product_id;
+        this.affected = affected;
+        this.lineorder_id = lineorder_id;
+    }
+    
 
   
     

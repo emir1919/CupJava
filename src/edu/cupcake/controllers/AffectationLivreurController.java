@@ -10,8 +10,13 @@ import com.calendarfx.model.CalendarEvent;
 import com.calendarfx.model.CalendarSource;
 import com.calendarfx.model.Entry;
 import com.calendarfx.view.CalendarView;
+import edu.cupcake.entities.Line_Order;
 import edu.cupcake.entities.Planning;
+import edu.cupcake.entities.Users;
+import edu.cupcake.services.Line_OrderService;
 import edu.cupcake.services.PlanningService;
+import edu.cupcake.services.UsersService;
+import java.io.IOException;
 import static java.lang.Thread.sleep;
 import java.net.URL;
 import java.sql.SQLException;
@@ -25,8 +30,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -37,6 +48,24 @@ public class AffectationLivreurController implements Initializable {
 
     @FXML
     private AnchorPane calendarpane;
+    public static Line_Order selected;
+    public static Users selecteduser;
+
+    public static Line_Order getSelected() {
+        return selected;
+    }
+
+    public static void setSelected(Line_Order selected) {
+        AffectationLivreurController.selected = selected;
+    }
+    public static Users getSelecteduser() {
+        return selecteduser;
+    }
+
+    public static void setSelecteduser(Users selecteduser) {
+        AffectationLivreurController.selecteduser = selecteduser;
+    }
+
 
     /**
      * Initializes the controller class.
@@ -46,7 +75,7 @@ public class AffectationLivreurController implements Initializable {
           CalendarView calendarView = new CalendarView(); 
           
                 Calendar disponible = new Calendar("Disponible"); 
-                Calendar affected = new Calendar("Holidays");
+                Calendar affected = new Calendar("Affected");
                 disponible.setStyle(Calendar.Style.STYLE1); 
                 affected.setStyle(Calendar.Style.STYLE6);
 
@@ -87,7 +116,7 @@ public class AffectationLivreurController implements Initializable {
                             
                               
                                
-                            disponible.addEventHandler((CalendarEvent event) -> {
+                            affected.addEventHandler((CalendarEvent event) -> {
                              
                                Planning p = new Planning();
                                p.setDatestart(event.getEntry().getInterval().getStartDateTime());
@@ -105,18 +134,24 @@ public class AffectationLivreurController implements Initializable {
                                 
                                 
                             });
-                              
+                              Line_OrderService linesr= new Line_OrderService();
                             
-                             disponible.addEventHandler((CalendarEvent event) -> {
+                          affected.addEventHandler((CalendarEvent event) -> {
                                   if (event.isEntryAdded()) {
                                     Planning add = new Planning();
+                                    
                                     add.setDatestart(event.getEntry().getInterval().getStartDateTime());
                                     add.setDateend(event.getEntry().getInterval().getEndDateTime());
-                                    add.setUtilisateur_id(cupcake.Cupcake.user.getId());
+                                    add.setLine_order(selected.getId());
+                                      
+                                    add.setUtilisateur_id(selecteduser.getId());
                                    try {
-                                       int id=psr.addPlanningDisponible(add);
+                                       int id=psr.addPlanningAffected(add);
+                                       selected.setAffected("affected");
+                                       linesr.EditAffectedLineorder(selected);
+
                                        event.getEntry().setId(""+id);
-                                       event.getEntry().setTitle("Disponible");
+                                       event.getEntry().setTitle("Affectée");
                                        System.out.println("Is added nice id="+id);
                                    } catch (SQLException ex) {
                                        Logger.getLogger(LivreurController.class.getName()).log(Level.SEVERE, null, ex);
@@ -126,7 +161,7 @@ public class AffectationLivreurController implements Initializable {
                                     });  
                              
                              
-                             disponible.addEventHandler((CalendarEvent event) -> {
+                             affected.addEventHandler((CalendarEvent event) -> {
                                   if (event.isEntryRemoved()) {
                                       try {
                                           psr.DeletePlanning(Integer.parseInt(event.getEntry().getId()));
@@ -144,7 +179,7 @@ public class AffectationLivreurController implements Initializable {
                             
                             
 calendarView.getCalendars().get(0).setName("lol");
-            calendarView.setDefaultCalendarProvider(param -> disponible);
+            calendarView.setDefaultCalendarProvider(param -> affected);
 
                 updateTimeThread.setPriority(Thread.MAX_PRIORITY);
                 updateTimeThread.setDaemon(true);
@@ -161,11 +196,12 @@ calendarView.getCalendars().get(0).setName("lol");
 
                                List<Planning> plannings = new ArrayList<Planning>();
         try {
-            plannings=psr.getPlanningsbyUserId(cupcake.Cupcake.user.getId());
+            plannings=psr.getPlanningsbyUserId(selecteduser.getId());
         } catch (SQLException ex) {
             Logger.getLogger(LivreurController.class.getName()).log(Level.SEVERE, null, ex);
         }   
         Iterator<Planning> it = plannings.iterator();
+        UsersService usr= new UsersService();
                                while (it.hasNext()) {
             Planning next = it.next();
                                    
@@ -173,7 +209,11 @@ calendarView.getCalendars().get(0).setName("lol");
                                    System.err.println(next.getId());
                                    if (next.getLine_order()==0) {
                  Entry<String> dentistAppointment = new Entry<>("Disponible");
-                dentistAppointment.setTitle("Disponible");
+                try {
+                    dentistAppointment.setTitle("Disponible ("+usr.getUserById(next.getUtilisateur_id()).getUsername()+")");
+                } catch (SQLException ex) {
+                    Logger.getLogger(AffectationLivreurController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 dentistAppointment.setInterval( next.getDatestart(), next.getDateend());
                 dentistAppointment.setId(""+next.getId());
                disponible.addEntry(dentistAppointment);
@@ -195,5 +235,20 @@ calendarView.getCalendars().get(0).setName("lol");
             
         }
     }
+    
+   /* public void Affect(CalendarEvent event) throws IOException
+    {
+        
+        Parent root = FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/AffectPlanningPopup.fxml"));
+        Stage stage = new Stage(StageStyle.DECORATED);
+text.setText(""+event.getEntry().getId());
+        stage.setMaximized(true);
+        stage.setScene(new Scene(root));
+        stage.show();
+
+
+    }*/
+
+    
     
 }

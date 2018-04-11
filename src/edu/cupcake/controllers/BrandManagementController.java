@@ -54,7 +54,6 @@ public class BrandManagementController implements Initializable {
     int currentBrandId = 1;
     
     
-    @FXML
     private Button productManagementBtn;
     @FXML
     private JFXTextField pNameTF;
@@ -102,14 +101,6 @@ public class BrandManagementController implements Initializable {
     private ImageView pIV;
     @FXML
     private Label imgPathLbl;
-    @FXML
-    private Button InfoBrandButton;
-    @FXML
-    private Button BakeryButton;
-    @FXML
-    private Button map;
-    @FXML
-    private Button stat;
 
     /**
      * Initializes the controller class.
@@ -123,8 +114,8 @@ public class BrandManagementController implements Initializable {
         pSubCatCB.setValue(subcats.stream().findFirst().get());
         
         ProductService ser = new ProductService();
-        //currentBrandId = ser.getCurrentBrand(cupcake.Cupcake.user.getId());
-        currentBrandId = 2;
+        currentBrandId = ser.getCurrentBrand(cupcake.Cupcake.user.getId());
+        //currentBrandId = 2;
         refreshProducts();
         
         productsTV.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -363,32 +354,8 @@ public class BrandManagementController implements Initializable {
         }
     }
 
-    @FXML
-    private void ShowBrand(ActionEvent event) {
-    }
 
-    @FXML
-    private void ShowBakery(ActionEvent event) {
-    }
-
-    @FXML
-    private void localisation(ActionEvent event) {
-    }
-
-    @FXML
-    private void statistiques(ActionEvent event) {
-    }
-
-    @FXML
-    private void showProductManagement(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/BrandManagement.fxml"));
-            Parent root = loader.load();
-            productManagementBtn.getScene().setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    
     
     
 }

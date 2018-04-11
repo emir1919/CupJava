@@ -6,6 +6,7 @@
 package edu.cupcake.services;
 
 import edu.cupcake.entities.Line_Order;
+import edu.cupcake.entities.ObservableLineOrders;
 import edu.cupcake.entities.Orders;
 import edu.cupcake.utils.Connexion;
 import java.sql.Connection;
@@ -37,6 +38,7 @@ public class Line_OrderService {
             System.out.println(ex);
         }
     }
+    
     
     
     public List<Line_Order> getLineOrdersbyOrderId(int id) throws SQLException {
@@ -85,6 +87,50 @@ public class Line_OrderService {
     
      }  
     
+    
+    
+    public List<ObservableLineOrders> getLineOrdersbyBakeryId(int id) throws SQLException {
+        List<ObservableLineOrders> myList = new ArrayList<ObservableLineOrders>();
+        try {
+
+            String requete2 = "SELECT line_order.id as lineid,orders.Date,product.Name,orders.PaymentState,orders.id,line_order.affected,line_order.qte,line_order.product_id,orders.amount,line_order.commande_id FROM line_order INNER JOIN stock ON stock.Product_id=line_order.product_id INNER JOIN product ON product.id=line_order.product_id INNER JOIN bakery ON bakery.id=stock.Bakery_id INNER JOIN orders ON orders.id=line_order.commande_id WHERE bakery.id= ?";
+            PreparedStatement st2 = con.prepareStatement(requete2);
+            st2.setInt(1, id);
+            ResultSet rs = st2.executeQuery();
+            while (rs.next()) {
+              
+               
+                myList.add(new ObservableLineOrders(
+                rs.getInt("lineid"),
+                        rs.getDate("Date"), 
+                        rs.getString("Name"), 
+                        rs.getFloat("amount"), 
+                        rs.getString("paymentstate"), 
+                        rs.getInt("qte"), 
+                        rs.getInt("commande_id"), 
+                        rs.getInt("product_id"), 
+                        rs.getString("affected")));
+                
+                        
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AdressesService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return myList;
+    }
+    
+    public void EditAffectedLineorder(Line_Order u) throws SQLException {
+        
+        
+        String req = "UPDATE line_order SET affected = ? WHERE id = ?";
+        PreparedStatement st = con.prepareStatement(req);
+        
+        st.setString(1,u.getAffected());
+        st.setInt(2,u.getId());
+ 
+        st.executeUpdate();
+
+    }
     
     
 }

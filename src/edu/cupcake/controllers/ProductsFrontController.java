@@ -167,7 +167,7 @@ public class ProductsFrontController implements Initializable {
                 @Override
                 public void handle(ActionEvent event) {
                     StockService s = new StockService();
-                    s.getStockByProduct(lastItem.getId());
+                    //s.getStockByProduct(lastItem.getId());
                     if(cupcake.Cupcake.Panier.stream().anyMatch((Panier p) -> p.getProduit().getId()==lastItem.getId())){
                         Panier pan = cupcake.Cupcake.Panier.stream().filter((Panier p)->p.getProduit().getId()==lastItem.getId()).findFirst().get();
                         Panier newPan = pan;

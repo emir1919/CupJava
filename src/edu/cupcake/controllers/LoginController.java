@@ -24,6 +24,8 @@ import edu.cupcake.entities.Users;
 import java.io.IOException;
 import javafx.scene.control.Alert.AlertType;
 import cupcake.Cupcake;
+import edu.cupcake.entities.Enseigne;
+import edu.cupcake.services.EnseigneServices;
 import edu.cupcake.utils.BCrypt;
 import edu.cupcake.utils.Routing;
 import java.security.SecureRandom;
@@ -34,6 +36,8 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -131,8 +135,23 @@ public class LoginController implements Initializable {
                 alert.setContentText("Vous êtes connecté en tant que :" + u.getUsername());
 
                 alert.showAndWait();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/Home.fxml"));
-                AnchorPane root = (AnchorPane) loader.load();
+                AnchorPane root = getRole(u);
+                /*AnchorPane root;
+
+                EnseigneServices es = new EnseigneServices();
+                Enseigne e = new Enseigne();
+                e = es.getEnseignebyUserId((cupcake.Cupcake.user.getId()));
+                if (e == null) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/AddBrand.fxml"));
+                    root = (AnchorPane) loader.load();
+
+                } else {
+                    BackBrandController.informations=1;
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/BackBrand.fxml"));
+                    root = (AnchorPane) loader.load();
+                }
+                /*FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/Home.fxml"));
+                AnchorPane root = (AnchorPane) loader.load();*/
 
                 txtPassword.getScene().setRoot(root);
 
@@ -145,7 +164,38 @@ public class LoginController implements Initializable {
 
         }
     }
+    
+    public AnchorPane getRole(Users user) throws IOException{
+        AnchorPane root;
+        //ObservableList<String> RoleList = FXCollections.observableArrayList("ROLE_USER", "ROLE_ADMIN","ROLE_DELIVERYMAN","ROLE_BAKERY","ROLE_BRAND");
+        if (user.getRoles().contains("ROLE_ADMIN")) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/CategoriesAdmin.fxml"));
+            root = (AnchorPane) loader.load();
+        }else if(user.getRoles().contains("ROLE_BRAND")){
+            EnseigneServices es = new EnseigneServices();
+            Enseigne e = new Enseigne();
+            e = es.getEnseignebyUserId((cupcake.Cupcake.user.getId()));
+            if (e == null) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/AddBrand.fxml"));
+                root = (AnchorPane) loader.load();
 
+            } else {
+                BackBrandController.informations = 1;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/BackBrand.fxml"));
+                root = (AnchorPane) loader.load();
+            }
+        }else if(user.getRoles().contains("ROLE_BAKERY")){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/BakeryManagement.fxml"));
+            root = (AnchorPane) loader.load();
+        }else{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/Home.fxml"));
+            root = (AnchorPane) loader.load();
+        }
+        return root;
+    }
+    
+    
+         
     @FXML
     public void Inscription(ActionEvent event) throws IOException {
 
@@ -202,7 +252,7 @@ public class LoginController implements Initializable {
 
                 driver.quit();
                 b = false;
-                FacebookClient fbClient = new DefaultFacebookClient(accessToken, Version.LATEST);
+                FacebookClient fbClient = new DefaultFacebookClient(accessToken);
                 String fields = "name,first_name,last_name,age_range,birthday,email,gender,address";
                 User user = fbClient.fetchObject("me", User.class, Parameter.with("fields", fields));
                 System.out.println(user.getName());
@@ -217,30 +267,24 @@ public class LoginController implements Initializable {
                     AnchorPane root = (AnchorPane) loader.load();
                     connectbutton.getScene().setRoot(root);
 
-                }
-                else
-                {
-                    java.sql.Date sqlDate=null;
-                    if(user.getBirthday()!=null){
-			
-                        java.util.Date dtJ= new SimpleDateFormat("MM/DD/YYYY").parse(user.getBirthday());
-						sqlDate = new java.sql.Date(dtJ.getTime());
-                                                Users u = new Users(user.getFirstName().toLowerCase()+user.getLastName().toLowerCase(), user.getEmail(),user.getFirstName().toLowerCase()+user.getLastName().toLowerCase(), sqlDate, "ROLE_USER", user.getFirstName(), user.getLastName(), 0);
-                                                Cupcake.user=u;
-						usr.AddFbUser(u);
-					}
-				    
-					else
-					{
-						 Users u = new Users(user.getFirstName().toLowerCase()+user.getLastName().toLowerCase(), user.getEmail(), user.getFirstName().toLowerCase()+user.getLastName().toLowerCase(), sqlDate, "ROLE_USER", user.getFirstName(), user.getLastName(), 0);
-                                                Cupcake.user=u;
-						usr.AddFbUser(u);
-					}
-                    HomeController.afficherprofile=1;
+                } else {
+                    java.sql.Date sqlDate = null;
+                    if (user.getBirthday() != null) {
+
+                        java.util.Date dtJ = new SimpleDateFormat("MM/DD/YYYY").parse(user.getBirthday());
+                        sqlDate = new java.sql.Date(dtJ.getTime());
+                        Users u = new Users(user.getFirstName().toLowerCase() + user.getLastName().toLowerCase(), user.getEmail(), user.getFirstName().toLowerCase() + user.getLastName().toLowerCase(), sqlDate, "ROLE_USER", user.getFirstName(), user.getLastName(), 0);
+                        Cupcake.user = u;
+                        usr.AddFbUser(u);
+                    } else {
+                        Users u = new Users(user.getFirstName().toLowerCase() + user.getLastName().toLowerCase(), user.getEmail(), user.getFirstName().toLowerCase() + user.getLastName().toLowerCase(), sqlDate, "ROLE_USER", user.getFirstName(), user.getLastName(), 0);
+                        Cupcake.user = u;
+                        usr.AddFbUser(u);
+                    }
+                    HomeController.afficherprofile = 1;
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/cupcake/gui/Home.fxml"));
                     AnchorPane root = (AnchorPane) loader.load();
                     connectbutton.getScene().setRoot(root);
-                    
 
                 }
 

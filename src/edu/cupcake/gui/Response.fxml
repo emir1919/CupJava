@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="458.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="edu.cupcake.controllers.ResponseController">
+   <children>
+      <JFXTextArea fx:id="SubjectId" layoutX="98.0" layoutY="29.0" prefHeight="51.0" prefWidth="464.0" />
+      <JFXTextArea fx:id="BodyId" layoutX="98.0" layoutY="119.0" prefHeight="99.0" prefWidth="464.0" />
+      <JFXTextArea fx:id="newcontent" layoutX="98.0" layoutY="258.0" prefHeight="99.0" prefWidth="464.0" />
+      <JFXButton fx:id="ResponseId" layoutX="500.0" layoutY="387.0" onAction="#Response" text="Repondre" />
+      <Label layoutX="14.0" layoutY="38.0" text="Objet" />
+      <Label layoutX="14.0" layoutY="134.0" text="Contenu" />
+      <Label layoutX="14.0" layoutY="266.0" text="Reponse" />
+   </children>
+</AnchorPane>

@@ -6,8 +6,10 @@
 package edu.cupcake.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import cupcake.Cupcake;
 import static edu.cupcake.controllers.ProductsFrontController.productdetail;
 import edu.cupcake.entities.Panier;
+import edu.cupcake.utils.Routes;
 import edu.cupcake.utils.Routing;
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -50,10 +53,6 @@ public class HomeController implements Initializable {
     @FXML
     private Text txtPrixTotal;
     
-    
-
-    
-    
         public static int afficherprofile=0;
         public static int afficheradresses=0;
         public static int affichercommandes=0;
@@ -62,9 +61,22 @@ public class HomeController implements Initializable {
         public static int affichercategories=0;
         public static int afficherproduits=0;
         public static int afficherdetailproduit=0;
+        public static int showevents=0;
         public static int afficherAccueil=0;
     @FXML
     private JFXButton livreurbutton;
+    @FXML
+    private JFXButton eventbutton;
+    @FXML
+    private JFXButton msgbutton;
+    @FXML
+    private HBox headpane;
+    @FXML
+    private Text connected;
+    @FXML
+    private Text NomPrenom;
+    @FXML
+    private JFXButton accueilBtn;
     
     /**
      * Initializes the controller class.
@@ -74,18 +86,22 @@ public class HomeController implements Initializable {
         try {
             if (cupcake.Cupcake.user!=null) {
                 menupane.getChildren().remove(connexiobutton);
+                NomPrenom.setText(""+Cupcake.user.getFirstname()+" "+Cupcake.user.getLastname());
                if (!cupcake.Cupcake.user.getRoles().contains("ROLE_DELIVERYMAN"))
             {
-                menupane.getChildren().remove(livreurbutton);
+                headpane.getChildren().remove(livreurbutton);
             }  
                 
             }
             else
             {
+                NomPrenom.setVisible(false);
+                connected.setVisible(false);
                 menupane.getChildren().remove(profilebutton);
                 menupane.getChildren().remove(deconnectbutton);
                 
-                menupane.getChildren().remove(livreurbutton);
+                headpane.getChildren().remove(livreurbutton);
+                menupane.getChildren().remove(msgbutton);
 
             }
            
@@ -101,7 +117,21 @@ public class HomeController implements Initializable {
             AnchorPane commande = FXMLLoader.load(getClass().getResource(Routing.MaCommande));
             AnchorPane categories = FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/CategoriesFront.fxml"));
              AnchorPane produits = FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/ProductsFront.fxml"));
-        AnchorPane accueil = FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/Accueil.fxml"));
+
+AnchorPane accueil = FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/Accueil.fxml"));   
+            
+            
+
+
+            
+            
+            if(showevents!=0 && Cupcake.Selected_id != 0)
+            {
+            AnchorPane events = FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/ShowEventsFront.fxml"));
+
+                content.getChildren().setAll(events);
+                showevents=0;
+            }
 
              if(macommande!=0)
             {
@@ -130,12 +160,12 @@ public class HomeController implements Initializable {
                      content.getChildren().setAll(produits);
                      afficherproduits=0;
                     }
-             if(afficherAccueil!=0)
+             
+            if(afficherAccueil!=0)
                     {
                      content.getChildren().setAll(accueil);
-                     afficherAccueil=0;
+                     afficherproduits=0;
                     }
-            
            /* if(afficheradresses!=0)
                     {
                          AnchorPane pane=FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/Profile.fxml"));
@@ -206,9 +236,7 @@ public class HomeController implements Initializable {
                 prixtotal=next.getProduit().getPrice()*next.getQte()+prixtotal;
 
                 
-                
             }
-                      
                 txtNbProduits.setText(""+nbproduit+" produits");
                 txtPrixTotal.setText(""+prixtotal+" DT");
  
@@ -222,6 +250,7 @@ public class HomeController implements Initializable {
 
                 content.getChildren().setAll(pane);
     }
+    
 
     @FXML
     private void livreurhome(ActionEvent event) throws IOException {
@@ -250,10 +279,32 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void showAccueil(ActionEvent event) throws IOException  {
-        AnchorPane pane=FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/Accueil.fxml"));
+    private void ListEvents(ActionEvent event) throws IOException {
+          AnchorPane pane=FXMLLoader.load(getClass().getResource(Routes.ListeEventFrontVIEW));
 
                 content.getChildren().setAll(pane);
+    }
+    @FXML
+    private void ShowBrand(ActionEvent event) throws IOException {
+
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/show.fxml"));
+
+        content.getChildren().setAll(pane);
+
+    }
+
+    @FXML
+    private void ShowMsg(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/Messagerie.fxml"));
+
+        content.getChildren().setAll(pane);
+    }
+
+    @FXML
+    private void showAccueil(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/edu/cupcake/gui/Accueil.fxml"));
+
+        content.getChildren().setAll(pane);
     }
     
 }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="920.0" prefWidth="1320.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9" fx:controller="edu.cupcake.controllers.BakeryOrdersController">
+   <children>
+      <AnchorPane prefHeight="920.0" prefWidth="217.0" style="-fx-background-color: #212221;">
+         <children>
+            <Text fill="#fcfafa" layoutX="37.0" layoutY="34.0" lineSpacing="105.869140625" strokeType="OUTSIDE" strokeWidth="0.0" text="Cupcake">
+               <font>
+                  <Font name="Comic Sans MS" size="24.0" />
+               </font>
+            </Text>
+            <Button fx:id="stockManagementBtn" layoutX="66.0" layoutY="107.0" mnemonicParsing="false" onAction="#showStockManagement" style="-fx-background-color: #212221;" text="Mon Stock" textFill="#fcfcfc">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="24.0" fitWidth="22.0" layoutX="34.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ressources/images/if_icon-07_95293.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="cmdbutton" layoutX="61.0" layoutY="181.0" mnemonicParsing="false" onAction="#ShowLineOrders" style="-fx-background-color: #212221;" text="Commandes" textFill="#fcfcfc">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="orderslist" layoutX="217.0" prefHeight="519.0" prefWidth="1102.0">
+        <columns>
+          <TableColumn fx:id="date" prefWidth="183.0" text="Date" />
+          <TableColumn fx:id="produit" prefWidth="219.0" text="Produit" />
+            <TableColumn fx:id="qte" prefWidth="141.0" text="Quantité" />
+            <TableColumn fx:id="prix" prefWidth="141.0" text="Prix total" />
+            <TableColumn fx:id="livraison" prefWidth="141.0" text="Livraison" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="btnAffecter" layoutX="961.0" layoutY="553.0" onAction="#AffecterLivraison" prefHeight="40.0" prefWidth="161.0" style="-fx-background-color: #F39C12;" text="Affecter Livraison" textFill="WHITE">
+         <font>
+            <Font name="Roboto Medium" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXComboBox fx:id="combousers" layoutX="857.0" layoutY="560.0" />
+   </children>
+</AnchorPane>
